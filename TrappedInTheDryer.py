@@ -6,6 +6,8 @@ def help_info():
 
 - 'look' or 'l': Player looks around. This repeats the description of everything you see.
 
+- 'examine ____' or 'x ____': Player looks more closely at something. Fill in the blank with the item you want to learn more about.
+
 - 'inventory' or 'i': This lists everything you are carrying.
 
 - 'forward', 'left', 'right', 'back': Player walks in that direction.
