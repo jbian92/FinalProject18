@@ -2,7 +2,7 @@
 def help_info():
     print("\n- - - - - - - - - - - - - - - - - - - - - - - - -\n")
     print("You will be exploring places and interacting with items in the game.\n")
-    print(f"""These are the commands you will be using:
+    print(f"""These are the commands you will use the most:
 
 - 'look' or 'l': Player looks around. This repeats the description of everything you see.
 
@@ -12,8 +12,38 @@ def help_info():
 
 - 'forward', 'left', 'right', 'back': Player walks in that direction.
 
-- 'use ____' or 'u ____': Player uses the item. Fill in the blank with the item you want to use. You will then be asked about what you want to do with that item.
     """)
+    print(f"""There are other topics you can get help on. Just type them in:
+
+- 'help commands": This provides you with some more common commands.
+
+- 'help hint': This provides you with a single hint on what to try next.
+    """)
+    print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
+
+#This provides the player with some more commands that can be used in the game.
+def help_commands():
+    print("\n- - - - - - - - - - - - - - - - - - - - - - - - -\n")
+    print(f"""These are the most common ways of interacting with the game's world. These commands do what they say. Common sense applies.
+
+- 'take ____', 'drop ____'
+
+- 'unlock ____ with ____', 'lock ____ with ____'
+
+- 'open ____', 'close ____'
+
+- 'put ____ in ____', 'put ____ on ____'
+
+- 'touch ____', 'smell ____', 'listen to ____'
+
+- 'eat ____', 'drink ____'
+
+- 'search ____', 'look in ____', 'look under ____', 'look behind ____'
+
+- 'enter ____', 'sit on ____', 'climb ____'
+
+    """)
+    print("There is no 'use' command in this game. Instead, try a command that is appropriate to whatever you are doing. If you have a book, try to 'read' it. If you find a lever, try to 'pull' or 'push' it.")
     print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
 
 #character setup
