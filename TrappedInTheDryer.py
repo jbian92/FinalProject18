@@ -64,6 +64,12 @@ class Player(Character):
 {self.description}
         """)
 
+#These are the different characters the player can choose to be.
+fan = "purple"
+Totoro = Player("Totoro", fan, 200, 30, 80)
+
+Totoro.description()
+
 #This is the game the player will be playing.
 def begin_game():
 
