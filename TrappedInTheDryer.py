@@ -52,6 +52,18 @@ class Character:
 - defense: {self.defense}
     """)
 
+#player's character setup
+class Player(Character):
+    """Generic player class"""
+    def __init__(self, name, description, health, attack, defense):
+        Character.__init__(self, name, health, attack, defense)
+        self.description = description
+
+    def description(self):
+        print(f"""{self.name} is:
+{self.description}
+        """)
+
 #This is the game the player will be playing.
 def begin_game():
 
@@ -80,6 +92,12 @@ def begin_game():
     print(".")
     x()
     print("After what seems like forever, the spinning finally stops. You slowly get up, a bit dizzy from all that spinning. You look around and realize that you have shrunk and are now stuck inside the dryer.")
+
+    #Dryer Drum Room - This is the room where the player starts in.
+    def drum_room():
+
+        #This is the description of the room.
+        print("")
 
 #introduction to the game
 print("Welcome to Trapped in the Dryer! This is a text-based game where you have to find your way out of a dryer! Good luck!\n")
