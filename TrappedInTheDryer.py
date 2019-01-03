@@ -50,6 +50,7 @@ class Character:
 - defense: {self.defense}
     """)
 
+#This is the game the player will be playing.
 def begin_game():
 
     #background information
@@ -63,6 +64,8 @@ def begin_game():
     print(".")
     x()
     print("And the dryer finally stopped! You begin taking out your clothes, excited to go back home and binge watch Netflix on the couch.")
+    x()
+    print("Wait, wait, wait. Before you close the dryer door, you realize that there's a sock stuck at the very back of the dryer. You reach for the sock but your arm seems to be to short to reach the back. You decide to crawl into the dryer to get your sock back.")
 
 #introduction to the game
 print("Welcome to Trapped in the Dryer! This is a text-based game where you have to find your way out of a dryer! Good luck!\n")
