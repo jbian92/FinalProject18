@@ -50,6 +50,7 @@ class Player(Character):
     def __init__(self, health, attack, defense):
         Character.__init__(self, health, attack, defense)
 
+    #shows the player's stats
     def stats(self):
         print(f"""Your stats:
 - health: {self.health}
@@ -57,6 +58,7 @@ class Player(Character):
 - defense: {self.defense}
     """)
 
+###NEED TO FIND WAY TO ADD ITEMS TO INVENTORY
     def inventory(self):
         inventory = {
             "weapons": {
@@ -82,6 +84,7 @@ class Opponent(Character):
         self.name = name
         self.description = description
 
+    #shows the opponent's stats
     def stats(self):
         print(f"""{self.name}'s stats:
 - health: {self.health}
@@ -89,6 +92,7 @@ class Opponent(Character):
 - defense: {self.defense}
     """)
 
+    #describes the opponent
     def description(self):
         print(f"""{self.name} is:
 {self.description}
@@ -125,12 +129,16 @@ def begin_game():
     print(".")
     x()
     print("After what seems like forever, the spinning finally stops. You slowly get up, a bit dizzy from all that spinning. You look around and realize that you have shrunk and are now stuck inside the dryer.")
+    x()
+    print("~ Remember that anything in quotes ' ' can be used as a command. ~")
 
     #Dryer Drum Room - This is the room where the player starts in.
     def drum_room():
 
         #This is the description of the room.
-        print("")
+        print("You are now in the Dryer Drum Room. Right behind you is the 'dryer door'.")
+
+    drum_room()
 
 #introduction to the game
 print("Welcome to Trapped in the Dryer! This is a text-based game where you have to find your way out of a dryer! Good luck!\n")
