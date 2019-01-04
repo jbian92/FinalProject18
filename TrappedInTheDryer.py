@@ -39,11 +39,48 @@ You can either type in 'go through the door' or 'walk up the stairs'. The comman
 #character setup
 class Character:
     """Generic character class"""
-    def __init__(self, name, health, attack, defense):
-        self.name = name
+    def __init__(self, health, attack, defense):
         self.health = health
         self.attack = attack
         self.defense = defense
+
+#player's character setup
+class Player(Character):
+    """Generic player class"""
+    def __init__(self, health, attack, defense):
+        Character.__init__(self, health, attack, defense)
+
+    def stats(self):
+        print(f"""Your stats:
+- health: {self.health}
+- attack: {self.attack}
+- defense: {self.defense}
+    """)
+
+    def inventory(self):
+        inventory = {
+            "weapons": {
+                "sock": 1,
+                "hairpin": 0,
+                "hair comb": 0,
+            },
+            "food": {
+                "gum": 0,
+                "hard candy": 0
+            }
+        }
+        for k, v in inventory.items():
+            print(f"{k}:")
+            for k_, v_ in inventory[k].items():
+                print(f" - {k_} ({v_})")
+
+#opponent character setup
+class Opponent(Character):
+    """Generic opponent class"""
+    def __init__(self, name, description, health, attack, defense):
+        Character.__init__(self, health, attack, defense)
+        self.name = name
+        self.description = description
 
     def stats(self):
         print(f"""{self.name}'s stats:
@@ -52,23 +89,13 @@ class Character:
 - defense: {self.defense}
     """)
 
-#player's character setup
-class Player(Character):
-    """Generic player class"""
-    def __init__(self, name, description, health, attack, defense):
-        Character.__init__(self, name, health, attack, defense)
-        self.description = description
-
     def description(self):
         print(f"""{self.name} is:
 {self.description}
         """)
 
-#These are the different characters the player can choose to be.
-fan = "purple"
-Totoro = Player("Totoro", fan, 200, 30, 80)
-
-Totoro.description()
+#This is the player's beginning stats.
+player = Player(100, 10, 20)
 
 #This is the game the player will be playing.
 def begin_game():
