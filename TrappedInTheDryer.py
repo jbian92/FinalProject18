@@ -8,6 +8,7 @@ def start():
     start = input("To begin playing, type 'play' and press enter. Type 'help' to learn how to play. > ").lower()
     while True:
         if start == "play":
+            player = Player()
             begin_game()
             break
         elif start == "help":
@@ -39,16 +40,22 @@ You can either type in 'go through the door' or 'walk up the stairs'. The comman
 #character setup
 class Character:
     """Generic character class"""
-    def __init__(self, health, attack, defense):
-        self.health = health
-        self.attack = attack
-        self.defense = defense
+    def stats(self):
+        print(f"""{self.name}'s stats:
+- health: {self.health}
+- attack: {self.attack}
+- defense: {self.defense}
+    """)
 
 #player's character setup
 class Player(Character):
     """Generic player class"""
-    def __init__(self, health, attack, defense):
-        Character.__init__(self, health, attack, defense)
+    def __init__(self):
+        self.name = input("\nWhat is your name? > ")
+
+        self.health = 100
+        self.attack = 10
+        self.defense = 20
 
         self.inventory = {
             "weapons": {
@@ -62,37 +69,23 @@ class Player(Character):
             }
         }
 
-    #shows the player's stats
-    def stats(self):
-        print(f"""Your stats:
-- health: {self.health}
-- attack: {self.attack}
-- defense: {self.defense}
-    """)
-
     #shows the player's inventory
     def inventory(self):
-
         for k, v in self.inventory.items():
             print(f"{k}:")
-            for k_, v_ in inventory[k].items():
+            for k_, v_ in self.inventory[k].items():
                 print(f" - {k_} ({v_})")
 
 #opponent character setup
 class Opponent(Character):
     """Generic opponent class"""
     def __init__(self, name, description, health, attack, defense):
-        Character.__init__(self, health, attack, defense)
+
         self.name = name
         self.description = description
-
-    #shows the opponent's stats
-    def stats(self):
-        print(f"""{self.name}'s stats:
-- health: {self.health}
-- attack: {self.attack}
-- defense: {self.defense}
-    """)
+        self.health = health
+        self.attack = attack
+        self.defense = defense
 
     #describes the opponent
     def description(self):
@@ -100,8 +93,7 @@ class Opponent(Character):
 {self.description}
         """)
 
-#This is the player's beginning stats.
-player = Player(100, 10, 20)
+#These are the opponents in the game.
 
 #This is the game the player will be playing.
 def begin_game():
