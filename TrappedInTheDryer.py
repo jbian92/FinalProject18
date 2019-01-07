@@ -95,6 +95,32 @@ class Opponent(Character):
 
 #These are the opponents in the game.
 
+
+#Dryer Drum Room - This is the room where the player starts in.
+def drum_room():
+
+    #This is the description of the room.
+    print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a narrow gap in the wall. To the 'left', there is metal door. To the 'right', stairs ascend into darkness.\n")
+
+    c1 = input("> ")
+    while True:
+        if c1 == "dryer door":
+            print("The dryer door is closed and locked.")
+            c1 = input("> ")
+        elif c1 == "lever":
+            if open_lever = False:
+                print("The box is closed and locked. You cannot get to the lever.")
+                c1 == input("> ")
+
+            #This is the end of the game.
+            else:
+        elif c1 == "front":
+            heating_duct()
+            break
+        elif c1 == "left":
+            if open_metal_door = False:
+                print("The door is closed and locked.")
+
 #This is the game the player will be playing.
 def begin_game():
 
@@ -125,12 +151,6 @@ def begin_game():
     print("After what seems like forever, the spinning finally stops. You slowly get up, a bit dizzy from all that spinning. You look around and realize that you have shrunk and are now stuck inside the dryer.")
     x()
     print("~ Remember that anything in quotes ' ' can be used as a command. ~")
-
-    #Dryer Drum Room - This is the room where the player starts in.
-    def drum_room():
-
-        #This is the description of the room.
-        print("You are now in the Dryer Drum Room. Right behind you is the 'dryer door'.")
 
     drum_room()
 
