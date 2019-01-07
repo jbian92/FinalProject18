@@ -50,17 +50,7 @@ class Player(Character):
     def __init__(self, health, attack, defense):
         Character.__init__(self, health, attack, defense)
 
-    #shows the player's stats
-    def stats(self):
-        print(f"""Your stats:
-- health: {self.health}
-- attack: {self.attack}
-- defense: {self.defense}
-    """)
-
-###NEED TO FIND WAY TO ADD ITEMS TO INVENTORY
-    def inventory(self):
-        inventory = {
+        self.inventory = {
             "weapons": {
                 "sock": 1,
                 "hairpin": 0,
@@ -71,7 +61,19 @@ class Player(Character):
                 "hard candy": 0
             }
         }
-        for k, v in inventory.items():
+
+    #shows the player's stats
+    def stats(self):
+        print(f"""Your stats:
+- health: {self.health}
+- attack: {self.attack}
+- defense: {self.defense}
+    """)
+
+    #shows the player's inventory
+    def inventory(self):
+
+        for k, v in self.inventory.items():
             print(f"{k}:")
             for k_, v_ in inventory[k].items():
                 print(f" - {k_} ({v_})")
