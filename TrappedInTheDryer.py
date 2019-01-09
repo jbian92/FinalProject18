@@ -3,6 +3,11 @@ def x():
     x = input("")
     return x
 
+#This is for when the player types in an invalid command.
+def invalid():
+    print("Sorry but the command you entered is invalid. Please type in a command that is shown in quotes.")
+    return
+
 #Before beginning the game, the player can choose to either begin or learn how to play.
 def start():
     start = input("To begin playing, type 'play' and press enter. Type 'help' to learn how to play. > ").lower()
@@ -17,6 +22,7 @@ def start():
         else:
             while start not in ("play", "help"):
                 start = input("That is not a valid option. Please type 'play' or 'help'. > ")
+    return
 
 #This tells the player how to play the game.
 def help_info():
@@ -36,6 +42,7 @@ You can either type in 'go through the door' or 'walk up the stairs'. The comman
     x()
     print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
     start()
+    return
 
 #character setup
 class Character:
@@ -95,6 +102,9 @@ class Opponent(Character):
 
 #These are the opponents in the game.
 
+#These are the items that need to be unlocked by the player during the game.
+open_lever = "locked"
+open_metal_door = "locked"
 
 #Dryer Drum Room - This is the room where the player starts in.
 def drum_room():
@@ -102,24 +112,46 @@ def drum_room():
     #This is the description of the room.
     print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a narrow gap in the wall. To the 'left', there is metal door. To the 'right', stairs ascend into darkness.\n")
 
-    c1 = input("> ")
+    c1 = input("> ").lower()
     while True:
         if c1 == "dryer door":
             print("The dryer door is closed and locked.")
-            c1 = input("> ")
+            c1 = input("> ").lower()
+
         elif c1 == "lever":
-            if open_lever = False:
+            if open_lever == "locked":
                 print("The box is closed and locked. You cannot get to the lever.")
-                c1 == input("> ")
+                c1 == input("> ").lower()
 
             #This is the end of the game.
             else:
+                print()
+
+                break
+
         elif c1 == "front":
             heating_duct()
             break
+
         elif c1 == "left":
-            if open_metal_door = False:
+            if open_metal_door == "locked":
                 print("The door is closed and locked.")
+                c1 == input("> ").lower()
+            else:
+                print()
+
+                break
+
+        elif c1 == "right":
+            blower_room()
+            break
+
+        else:
+            invalid()
+            while c1 not in ("dryer door", "lever", "front", "left", "right"):
+                c1 == input("> ").lower()
+
+    return
 
 #This is the game the player will be playing.
 def begin_game():
