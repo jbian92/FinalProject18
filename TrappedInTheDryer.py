@@ -86,41 +86,58 @@ class Player(Character):
 #opponent character setup
 class Opponent(Character):
     """Generic opponent class"""
-    def __init__(self, name, description, health, attack, defense):
+    def __init__(self, name, health, attack, defense):
 
         self.name = name
-        self.description = description
         self.health = health
         self.attack = attack
         self.defense = defense
 
-    #describes the opponent
-    def description(self):
-        print(f"""{self.name} is:
-{self.description}
-        """)
-
 #These are the opponents in the game.
+rat = Opponent("The Rat", 50, 30, 10)
 
 #These are the items that need to be unlocked by the player during the game.
 open_lever = "locked"
 open_metal_door = "locked"
 
+#Heating Duct Room
+def heating_duct():
+
+    print("You get on your knees and crawl through the small gap.")
+
+    #This is the description of the room.
+    print("You are now standing in the Heating Duct Room. The room is warm and cozy. In 'front' of you, you see a door slightly open. However, you cannot see beyond the door. Behind you, there is a 'gap' in the wall.\n")
+
+    c2 = input("> ").lower()
+    while True:
+        if c2 == "front":
+            print("You open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
+            x()
+            print("The rat is remarkably large and well-fed. It seems to be angry at you. You may get into a fight with a rat today. *sigh*")
+            x()
+            player.stats()
+            rat.stats()
+            print("You have a weapon in your inventory!")
+            x()
+
+
+    return
+
 #Dryer Drum Room - This is the room where the player starts in.
 def drum_room():
 
     #This is the description of the room.
-    print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a narrow gap in the wall. To the 'left', there is metal door. To the 'right', stairs ascend into darkness.\n")
+    print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a gap in the wall. To the 'left', there is metal door. To the 'right', stairs ascend into darkness.\n")
 
     c1 = input("> ").lower()
     while True:
         if c1 == "dryer door":
-            print("The dryer door is closed and locked.")
+            print("The dryer door is closed and locked. It seems to be connected to the lever.")
             c1 = input("> ").lower()
 
         elif c1 == "lever":
             if open_lever == "locked":
-                print("The box is closed and locked. You cannot get to the lever.")
+                print("The box is closed and locked. You cannot get to the lever. However, there is a keyhole.")
                 c1 == input("> ").lower()
 
             #This is the end of the game.
