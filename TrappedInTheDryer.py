@@ -13,7 +13,6 @@ def start():
     start = input("To begin playing, type 'play' and press enter. Type 'help' to learn how to play. > ").lower()
     while True:
         if start == "play":
-            player = Player()
             begin_game()
             break
         elif start == "help":
@@ -77,7 +76,7 @@ class Player(Character):
         }
 
     #shows the player's inventory
-    def inventory(self):
+    def invt(self):
         for k, v in self.inventory.items():
             print(f"{k}:")
             for k_, v_ in self.inventory[k].items():
@@ -116,10 +115,20 @@ def heating_duct():
             print("The rat is remarkably large and well-fed. It seems to be angry at you. You may get into a fight with a rat today. *sigh*")
             x()
             player.stats()
+            x()
             rat.stats()
+            x()
             print("You have a weapon in your inventory!")
             x()
+            player.invt()
+            x()
+            print("You can use your sock that you were trying to grab as a weapon against the rat.")
+            break
 
+        elif c2 == "gap":
+            print("You get on your knees and crawl through the small gap.")
+            drum_room()
+            break
 
     return
 
@@ -134,11 +143,13 @@ def drum_room():
         if c1 == "dryer door":
             print("The dryer door is closed and locked. It seems to be connected to the lever.")
             c1 = input("> ").lower()
+            break
 
         elif c1 == "lever":
             if open_lever == "locked":
                 print("The box is closed and locked. You cannot get to the lever. However, there is a keyhole.")
-                c1 == input("> ").lower()
+                c1 = input("> ").lower()
+                break
 
             #This is the end of the game.
             else:
@@ -153,7 +164,8 @@ def drum_room():
         elif c1 == "left":
             if open_metal_door == "locked":
                 print("The door is closed and locked.")
-                c1 == input("> ").lower()
+                c1 = input("> ").lower()
+                break
             else:
                 print()
 
@@ -164,9 +176,10 @@ def drum_room():
             break
 
         else:
-            invalid()
             while c1 not in ("dryer door", "lever", "front", "left", "right"):
-                c1 == input("> ").lower()
+                invalid()
+                c1 = input("> ").lower()
+                break
 
     return
 
@@ -200,9 +213,12 @@ def begin_game():
     print("After what seems like forever, the spinning finally stops. You slowly get up, a bit dizzy from all that spinning. You look around and realize that you have shrunk and are now stuck inside the dryer.")
     x()
     print("~ Remember that anything in quotes ' ' can be used as a command. ~")
+    x()
 
     drum_room()
 
 #introduction to the game
-print("Welcome to Trapped in the Dryer! This is a text-based game where you have to find your way out of a dryer! Good luck!\n")
+print("Welcome to Trapped in the Dryer! This is a text-based game where you have to find your way out of a dryer! Good luck!")
+player = Player()
+print("\n")
 start()
