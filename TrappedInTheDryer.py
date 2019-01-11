@@ -87,26 +87,34 @@ class Player(Character):
                 print(f" - {k_} ({v_})")
 
     def battle(self, opponent):
-      """Player fights opponent"""
-      print("Let the battle begin!")
-      x()
-      while player.health > 0 or opponent.health > 0:
-        print(f"You attack {opponent.name}.")
+        """Player fights opponent"""
+        print("Let the battle begin!")
         x()
-        dmg_player = self.attack - opponent.defense
-        if dmg_player <= 0:
-          dmg_player = 0
-        opponent.health -= dmg_player
-        print(f"{opponent.name} is down to {opponent.health} health.")
-
-        print(f"{opponent.name} attacks you.")
-        x()
-        dmg_opponent = opponent.attack - player.defense
-        if dmg_opponent <= 0:
-          dmg_opponent = 0
-        player.health -= dmg_opponent
-        print(f"You are down to {player.health} health.")
-        x()
+        while player.health > 0 and opponent.health > 0:
+            print(f"You attack {opponent.name}.")
+            x()
+            dmg_player = self.attack - opponent.defense
+            if dmg_player <= 0:
+              dmg_player = 0
+            opponent.health -= dmg_player
+            print(f"{opponent.name} is down to {opponent.health} health.")
+            x()
+            if player.health > 0 and opponent.health > 0:
+                print(f"{opponent.name} attacks you.")
+                x()
+                dmg_opponent = opponent.attack - player.defense
+                if dmg_opponent <= 0:
+                  dmg_opponent = 0
+                player.health -= dmg_opponent
+                print(f"You are down to {player.health} health.")
+                x()
+            else:
+                x()
+                break
+        if player.health > 0 and opponent.health <= 0:
+            print("You won the battle! Congratulations!")
+        else:
+            print("Sorry, you lost.")
 
 #opponent character setup
 class Opponent(Character):
