@@ -46,6 +46,8 @@ You can either type in 'go through the door' or 'walk up the stairs'. The comman
 #character setup
 class Character:
     """Generic character class"""
+
+    #displays health, attack, and defense of character
     def stats(self):
         print(f"""{self.name}'s stats:
 - health: {self.health}
@@ -56,11 +58,13 @@ class Character:
 #player's character setup
 class Player(Character):
     """Generic player class"""
+
     def __init__(self):
+        """Constructor for Player class"""
         self.name = input("\nWhat is your name? > ")
 
         self.health = 100
-        self.attack = 10
+        self.attack = 5
         self.defense = 20
 
         self.inventory = {
@@ -82,18 +86,41 @@ class Player(Character):
             for k_, v_ in self.inventory[k].items():
                 print(f" - {k_} ({v_})")
 
+    def battle(self, opponent):
+      """Player fights opponent"""
+      print("Let the battle begin!")
+      x()
+      while player.health > 0 or opponent.health > 0:
+        print(f"You attack {opponent.name}.")
+        x()
+        dmg_player = self.attack - opponent.defense
+        if dmg_player <= 0:
+          dmg_player = 0
+        opponent.health -= dmg_player
+        print(f"{opponent.name} is down to {opponent.health} health.")
+
+        print(f"{opponent.name} attacks you.")
+        x()
+        dmg_opponent = opponent.attack - player.defense
+        if dmg_opponent <= 0:
+          dmg_opponent = 0
+        player.health -= dmg_opponent
+        print(f"You are down to {player.health} health.")
+        x()
+
 #opponent character setup
 class Opponent(Character):
     """Generic opponent class"""
-    def __init__(self, name, health, attack, defense):
 
+    def __init__(self, name, health, attack, defense):
+        """Constructor for Opponent class"""
         self.name = name
         self.health = health
         self.attack = attack
         self.defense = defense
 
 #These are the opponents in the game.
-rat = Opponent("The Rat", 50, 30, 10)
+rat = Opponent("The Rat", 15, 25, 5)
 
 #These are the items that need to be unlocked by the player during the game.
 open_lever = "locked"
@@ -102,7 +129,8 @@ open_metal_door = "locked"
 #Heating Duct Room
 def heating_duct():
 
-    print("You get on your knees and crawl through the small gap.")
+    print("\nYou get on your knees and crawl through the small gap.")
+    x()
 
     #This is the description of the room.
     print("You are now standing in the Heating Duct Room. The room is warm and cozy. In 'front' of you, you see a door slightly open. However, you cannot see beyond the door. Behind you, there is a 'gap' in the wall.\n")
@@ -110,7 +138,7 @@ def heating_duct():
     c2 = input("> ").lower()
     while True:
         if c2 == "front":
-            print("You open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
+            print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
             x()
             print("The rat is remarkably large and well-fed. It seems to be angry at you. You may get into a fight with a rat today. *sigh*")
             x()
@@ -123,12 +151,23 @@ def heating_duct():
             player.invt()
             x()
             print("You can use your sock that you were trying to grab as a weapon against the rat.")
+            player.attack += 5
+            x()
+            print(f"The sock increases your attack to {player.attack}.")
+            x()
+            player.battle(rat)
             break
 
         elif c2 == "gap":
             print("You get on your knees and crawl through the small gap.")
             drum_room()
             break
+
+        else:
+            while c2 not in ("front", "gap"):
+                invalid()
+                c2 = input("> ").lower()
+                break
 
     return
 
