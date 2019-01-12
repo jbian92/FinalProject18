@@ -1,3 +1,5 @@
+import sys
+
 #This is for the player to press enter to continue with the descriptions in the game. This will break up the description so it would be easier to read.
 def x():
     x = input("")
@@ -109,12 +111,12 @@ class Player(Character):
                 print(f"You are down to {player.health} health.")
                 x()
             else:
-                x()
                 break
         if player.health > 0 and opponent.health <= 0:
             print("You won the battle! Congratulations!")
         else:
             print("Sorry, you lost.")
+        return
 
 #opponent character setup
 class Opponent(Character):
@@ -139,35 +141,61 @@ def heating_duct():
 
     print("\nYou get on your knees and crawl through the small gap.")
     x()
+    print("~ checkpoint ~")
+    x()
 
     #This is the description of the room.
     print("You are now standing in the Heating Duct Room. The room is warm and cozy. In 'front' of you, you see a door slightly open. However, you cannot see beyond the door. Behind you, there is a 'gap' in the wall.\n")
 
+###HOW TO NOT FIGHT THE RAT AGAIN IF COME BACK TO THIS ROOM AFTER WIN THE BATTLE
+    rat_battle = "no"
+
     c2 = input("> ").lower()
     while True:
         if c2 == "front":
-            print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
-            x()
-            print("The rat is remarkably large and well-fed. It seems to be angry at you. You may get into a fight with a rat today. *sigh*")
-            x()
-            player.stats()
-            x()
-            rat.stats()
-            x()
-            print("You have a weapon in your inventory!")
-            x()
-            player.invt()
-            x()
-            print("You can use your sock that you were trying to grab as a weapon against the rat.")
-            player.attack += 5
-            x()
-            print(f"The sock increases your attack to {player.attack}.")
-            x()
-            player.battle(rat)
-            break
+            while True:
+                if rat_battle == "no":
+                    print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
+                    x()
+                    print("The rat is remarkably large and well-fed. It seems to be angry at you. You may get into a fight with a rat today. *sigh*")
+                    x()
+                    player.stats()
+                    x()
+                    rat.stats()
+                    x()
+                    print("You have a weapon in your inventory!")
+                    x()
+                    player.invt()
+                    x()
+                    print("You can use your sock that you were trying to grab as a weapon against the rat.")
+                    player.attack += 5
+                    x()
+                    print(f"The sock increases your attack to {player.attack}.")
+                    x()
+                    player.battle(rat)
+                    x()
+                    #There is no code for if the player loses the battle because the game is designed for the player to win this battle.
+                    rat_battle = "yes" #########???
+                    print("Behind the fallen rat, you see a hairpin.")
+                    x()
+                    player.inventory['weapons']['hairpin'] += 1
+                    print("~ New weapon acquired: hairpin ~")
+                    x()
+                    print("You continue walking past the rat, but it becomes too steep for you to continue walking. You cannot get out of the dryer this way. You turn around and return to the Heating Duct Room.")
+                    x()
+                    print("You are now standing in the Heating Duct Room. The room is warm and cozy. In 'front' of you, you see a door slightly open, which is where you just came from. Behind you, there is a 'gap' in the wall.\n")
+                    c2 = input("> ").lower()
+                    break
+
+                else:
+                    print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a dead rat in front of you. You remember that this was where you fought with the rat. You turn around and go back.")
+                    x()
+                    print("You are now standing in the Heating Duct Room. The room is warm and cozy. In 'front' of you, you see a door slightly open, which is where you just came from. Behind you, there is a 'gap' in the wall.\n")
+                    c2 = input("> ").lower()
+                    break
 
         elif c2 == "gap":
-            print("You get on your knees and crawl through the small gap.")
+            print("\nYou get on your knees and crawl through the small gap.\n")
             drum_room()
             break
 
@@ -178,6 +206,12 @@ def heating_duct():
                 break
 
     return
+
+#               game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
+                #if game == "checkpoint":
+                #    heating_duct()
+                #else:
+                #    sys.exit()
 
 #Dryer Drum Room - This is the room where the player starts in.
 def drum_room():
