@@ -1,4 +1,11 @@
+###################################
+# NEEDED FOR THE GAME TO FUNCTION #
+###################################
 import sys
+
+####################################
+# FUNCTIONS USED OFTEN IN THE GAME #
+####################################
 
 #This is for the player to press enter to continue with the descriptions in the game. This will break up the description so it would be easier to read.
 def x():
@@ -9,6 +16,10 @@ def x():
 def invalid():
     print("\nSorry but the command you entered is invalid. Please type in a command that is shown in quotes.")
     return
+
+################################
+# INFO BEFORE PLAYING THE GAME #
+################################
 
 #Before beginning the game, the player can choose to either begin or learn how to play.
 def start():
@@ -44,6 +55,10 @@ You can either type in 'go through the door' or 'walk up the stairs'. The comman
     print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
     start()
     return
+
+######################
+# CHARACTERS IN GAME #
+######################
 
 #character setup
 class Character:
@@ -87,6 +102,7 @@ class Player(Character):
             print(f"{k}:")
             for k_, v_ in self.inventory[k].items():
                 print(f" - {k_} ({v_})")
+        return
 
     def battle(self, opponent):
         """Player fights opponent"""
@@ -131,6 +147,10 @@ class Opponent(Character):
 
 #These are the opponents in the game.
 rat = Opponent("The Rat", 15, 25, 5)
+
+########
+# GAME #
+########
 
 #These are the things that need to be unlocked/solved by the player during the game.
 solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False}
