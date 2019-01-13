@@ -7,7 +7,7 @@ def x():
 
 #This is for when the player types in an invalid command.
 def invalid():
-    print("Sorry but the command you entered is invalid. Please type in a command that is shown in quotes.")
+    print("\nSorry but the command you entered is invalid. Please type in a command that is shown in quotes.")
     return
 
 #Before beginning the game, the player can choose to either begin or learn how to play.
@@ -132,9 +132,8 @@ class Opponent(Character):
 #These are the opponents in the game.
 rat = Opponent("The Rat", 15, 25, 5)
 
-#These are the items that need to be unlocked by the player during the game.
-open_lever = "locked"
-open_metal_door = "locked"
+#These are the things that need to be unlocked/solved by the player during the game.
+solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False}
 
 #Heating Duct Room
 def heating_duct():
@@ -147,14 +146,11 @@ def heating_duct():
     #This is the description of the room.
     print("You are now standing in the Heating Duct Room. The room is warm and cozy. In 'front' of you, you see a door slightly open. However, you cannot see beyond the door. Behind you, there is a 'gap' in the wall.\n")
 
-###HOW TO NOT FIGHT THE RAT AGAIN IF COME BACK TO THIS ROOM AFTER WIN THE BATTLE
-    rat_battle = "no"
-
     c2 = input("> ").lower()
     while True:
         if c2 == "front":
             while True:
-                if rat_battle == "no":
+                if solved['heating_duct'] == False:
                     print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
                     x()
                     print("The rat is remarkably large and well-fed. It seems to be angry at you. You may get into a fight with a rat today. *sigh*")
@@ -175,7 +171,7 @@ def heating_duct():
                     player.battle(rat)
                     x()
                     #There is no code for if the player loses the battle because the game is designed for the player to win this battle.
-                    rat_battle = "yes" #########???
+                    solved['heating_duct'] = True
                     print("Behind the fallen rat, you see a hairpin.")
                     x()
                     player.inventory['weapons']['hairpin'] += 1
@@ -203,7 +199,6 @@ def heating_duct():
             while c2 not in ("front", "gap"):
                 invalid()
                 c2 = input("> ").lower()
-                break
 
     return
 
@@ -222,15 +217,13 @@ def drum_room():
     c1 = input("> ").lower()
     while True:
         if c1 == "dryer door":
-            print("The dryer door is closed and locked. It seems to be connected to the lever.")
+            print("\nThe dryer door is closed and locked. It seems to be connected to the lever.")
             c1 = input("> ").lower()
-            break
 
         elif c1 == "lever":
-            if open_lever == "locked":
-                print("The box is closed and locked. You cannot get to the lever. However, there is a keyhole.")
+            if solved['open_lever'] == False:
+                print("\nThe box is closed and locked. You cannot get to the lever. However, there is a keyhole.")
                 c1 = input("> ").lower()
-                break
 
             #This is the end of the game.
             else:
@@ -243,10 +236,10 @@ def drum_room():
             break
 
         elif c1 == "left":
-            if open_metal_door == "locked":
-                print("The door is closed and locked.")
+            if solved['open_metal_door'] == False:
+                print("\nThe door is closed and locked.")
                 c1 = input("> ").lower()
-                break
+
             else:
                 print()
 
@@ -260,7 +253,6 @@ def drum_room():
             while c1 not in ("dryer door", "lever", "front", "left", "right"):
                 invalid()
                 c1 = input("> ").lower()
-                break
 
     return
 
