@@ -135,7 +135,7 @@ rat = Opponent("The Rat", 15, 25, 5)
 #These are the things that need to be unlocked/solved by the player during the game.
 solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False}
 
-#Heating Duct Room
+#Heating Duct Room - Player will fight a rat to obtain a new weapon that will help defeat future opponents.
 def heating_duct():
 
     print("\nYou get on your knees and crawl through the small gap.")
@@ -202,13 +202,18 @@ def heating_duct():
 
     return
 
+#Air Flow Room -
+def air_flow():
+
+    print("
+
 #               game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
                 #if game == "checkpoint":
                 #    heating_duct()
                 #else:
                 #    sys.exit()
 
-#Dryer Drum Room - This is the room where the player starts in.
+#Dryer Drum Room - This is the room where the player starts in and where the player will (hopefully) escape the dryer.
 def drum_room():
 
     #This is the description of the room.
@@ -241,11 +246,25 @@ def drum_room():
                 c1 = input("> ").lower()
 
             else:
-                print()
-
+                print("\nThe key fits in the keyhole. The door opens and you walk inside.")
+                air_flow()
                 break
 
         elif c1 == "right":
+            print("You begin climbing the stairs. They seem to go on forever...")
+            x()
+            print(".")
+            x()
+            print(".")
+            x()
+            print("...climbing...")
+            x()
+            print(".")
+            x()
+            print(".")
+            x()
+            print("You finally pass through a doorway.")
+            x()
             blower_room()
             break
 
@@ -256,7 +275,7 @@ def drum_room():
 
     return
 
-#This is the game the player will be playing.
+#This is the beginning of the game.
 def begin_game():
 
     #background information
