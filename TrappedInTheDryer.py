@@ -225,7 +225,8 @@ def heating_duct():
 #Air Flow Room -
 def air_flow():
 
-    print("
+    #This is the description of the room.
+    print("You are now standing in the Air Flow Room.")
 
 #               game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
                 #if game == "checkpoint":
