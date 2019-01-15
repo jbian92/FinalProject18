@@ -87,7 +87,6 @@ class Player(Character):
         self.inventory = {
             "weapons": {
                 "sock": 1,
-                "hairpin": 0,
                 "hair comb": 0,
             },
             "clothes": {
@@ -216,8 +215,11 @@ def heating_duct():
                     solved['heating_duct'] = True
                     print("Behind the fallen rat, you see a hairpin.")
                     x()
-                    player.inventory['weapons']['hairpin'] += 1
+                    player.inventory['weapons']['hairpin'] = 1
                     print("~ New weapon acquired: hairpin ~")
+                    x()
+                    player.attack += 10
+                    print(f"The hairpin increases your attack to {player.attack}.")
                     x()
                     print("You continue walking past the rat, but it becomes too steep for you to continue walking. You cannot get out of the dryer this way. You turn around and return to the Heating Duct Room.")
                     x()
@@ -259,6 +261,7 @@ def lint_trap():
     print("You are now standing in the Lint Trap Room. The room is very dusty, and you immediately start coughing.")
     x()
 
+    #if the player has not completed the Lint Trap Room
     if solved['lint_room'] == False:
         print("*COUGH! COUGH! COUGH!")
         x()
@@ -266,8 +269,35 @@ def lint_trap():
         x()
         print("*COUGH! COUGH! COUGH!")
         x()
-        if "face mask" in self.inventory.items():
+
+        #The player can attack The Lint Monster only if they found the face mask in the Air Flow Room.
+        if "face mask" in player.inventory.items():
             print("You remember that you have a face mask in your inventory. You quickly put it on to stop coughing.")
+            x()
+            print("You look up and catch the creature trying to sneak up at you. You both freeze.")
+            x()
+            player.stats()
+            x()
+            lint.stats()
+            x()
+            print("It seems like you'll have to fight the creature. *sighhhhhhhh -_- . You just wanted to go home and watch Netflix but no, here you are.")
+            x()
+
+            #The player can complete this room only if they got the hairpin after fighting The Rat.
+            if "hairpin" in player.inventory.items():
+                print("On the bright side, you can use your new weapon: hairpin!")
+                x()
+                player.invt()
+                x()
+                player.battle(lint)
+                x()
+
+            else:
+                print("You decide to continue fighting with your trusty sock.")
+                x()
+                player.battle(lint)
+
+        #if the player does not have the face mask
         else:
             print("You can't stop coughing, not realizing that the creature is sneakily approaching you. The next thing you know...")
             x()
@@ -288,6 +318,8 @@ def lint_trap():
                 while game not in ("checkpoint", "stop"):
                     invalid()
                     game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
+
+    #if the player completed this room
     else:
         print("You remember to use the face mask from before. You quickly put it on to stop coughing. You look around, but there seems to be nothing of importance here.")
         x()
