@@ -137,7 +137,21 @@ class Player(Character):
             print("You won the battle! Congratulations!")
             print("- - - - - - - - - - - - - - - - - - - - - - - - -")
         else:
-            print("Sorry, you lost.")
+            print(" ~ YOU DIED! ~")
+            print("              ______               ")
+            print("        _____/      \\_____        ")
+            print("       |  _     ___   _   ||       ")
+            print("       | | \     |   | \  ||       ")
+            print("       | |  |    |   |  | ||       ")
+            print("       | |_/     |   |_/  ||       ")
+            print("       | | \     |   |    ||       ")
+                          | |  \    |   |    ||
+                          | |   \. _|_. | .  ||
+                          |                  ||
+                          |                  ||
+                          |                  ||
+                          | *   **    * **   |**
+                     \))/.,(//,,..,,\||(,,.,\\,.((//
             print("- - - - - - - - - - - - - - - - - - - - - - - - -")
         return
 
@@ -161,7 +175,7 @@ lint = Opponent("The Lint Monster", 80, 30, 8)
 ########
 
 #These are the things that need to be unlocked/solved by the player during the game.
-solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False, 'motor_room': False}
+solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False, 'motor_room': False, 'mask': False, 'hairpin': False}
 
 #Heating Duct Room - Player will fight a rat to obtain a new weapon that will help defeat future opponents.
 def heating_duct():
@@ -218,6 +232,7 @@ def heating_duct():
                     print("Behind the fallen rat, you see a hairpin.")
                     x()
                     player.inventory['weapons']['hairpin'] = 1
+                    solved['hairpin'] = True
                     print("~ New weapon acquired: hairpin ~")
                     x()
                     player.attack += 10
@@ -259,7 +274,8 @@ def air_flow():
     while True:
         if c5 == "face mask":
             player.inventory['clothes']['face mask'] = 1
-            print("~ New clothes acquired: face mask ~")
+            solved['mask'] = True
+            print("\n~ New clothes acquired: face mask ~")
             x()
             print("The face mask looks like the one surgeons and doctors wear. It should be useful if you want to lessen your air pollution exposure.")
             x()
@@ -278,11 +294,13 @@ def air_flow():
 def heating_element():
 
     #This is the description of the room.
+    print("")
 
 #Belt Tensioner Room -
 def belt_tensioner():
 
     #This is the description of the room.
+    print("")
 
 #Lint Trap Room -
 def lint_trap():
@@ -301,7 +319,7 @@ def lint_trap():
         x()
 
         #The player can attack The Lint Monster only if they found the face mask in the Air Flow Room.
-        if "face mask" in player.inventory.items():
+        if solved['mask'] == True:
             print("You remember that you have a face mask in your inventory. You quickly put it on to stop coughing.")
             x()
             print("You look up and catch the creature trying to sneak up at you. You both freeze.")
@@ -310,11 +328,11 @@ def lint_trap():
             x()
             lint.stats()
             x()
-            print("It seems like you'll have to fight the creature. ugh -_- . You just wanted to go home and watch Netflix but no, here you are.")
+            print("It seems like you'll have to fight the creature. ugh -_- . You just wanted to go home and watch Netflix, but no, here you are.")
             x()
 
             #The player can complete this room only if they got the hairpin after fighting The Rat.
-            if "hairpin" in player.inventory.items():
+            if solved['hairpin'] == True:
                 print("On the bright side, you can use your new weapon: hairpin!")
                 x()
                 player.invt()
@@ -328,7 +346,7 @@ def lint_trap():
                 print("The room is still dusty. In the corner of the room, you see a locked 'box' covered in spider webs and dust. To the 'right', there is a small flap covering a hole. 'Behind' you and to the 'left' are two archways.\n")
 
                 #if the player completed the Motor Room
-                if solved['motor_room'] = True:
+                if solved['motor_room'] == True:
                     c4 = input("> ").lower()
                     while True:
                         if c4 == "box":
@@ -428,7 +446,7 @@ def lint_trap():
             if c4 == "box":
                 if "candy" in player.inventory.items():
                     print("The box is empty.")
-                elif solved['motor_room'] = True::
+                elif solved['motor_room'] == True:
                     print("You remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
                     x()
                     print("The box opened! Inside, you find candy?")
@@ -461,7 +479,9 @@ def lint_trap():
 def motor_room():
 
     #This is the description of the room.
-    print("You are now standing in the Motor Room.")
+    print("You are now standing in the Motor Room. *NEED TO FINISH PRESS ENTER TO GO BACK")
+    x()
+    blower_room()
 
     return
 
@@ -477,7 +497,7 @@ def blower_room():
     c3 = input("> ").lower()
     while True:
         if c3 == "front":
-            print("You begin climbing the stairs. They seem to go on forever...")
+            print("\nYou begin climbing the stairs. They seem to go on forever...")
             x()
             print(".")
             x()
@@ -494,7 +514,7 @@ def blower_room():
             drum_room()
             break
         elif c3 == "fan":
-            print("You see a metal key attached to a string dangling from one of the fan's blades. You squeeze your hand into the fan and grab the key.")
+            print("\nYou see a metal key attached to a string dangling from one of the fan's blades. You squeeze your hand into the fan and grab the key.")
             x()
             solved['open_metal_door'] = True
             player.inventory['items']['metal key'] = 1
@@ -505,7 +525,7 @@ def blower_room():
             motor_room()
             break
         elif c3 == "left":
-            print("You get on your knees before pulling the flap up and crawling inside.")
+            print("\nYou get on your knees before pulling the flap up and crawling inside.")
             x()
             lint_trap()
             break
@@ -549,12 +569,12 @@ def drum_room():
                 c1 = input("> ").lower()
 
             else:
-                print("\nThe key fits in the keyhole. The door opens and you walk inside.")
+                print("\nThe key fits in the keyhole. The door opens and you walk inside.\n")
                 air_flow()
                 break
 
         elif c1 == "right":
-            print("You begin walking down the stairs. They seem to go on forever...")
+            print("\nYou begin walking down the stairs. They seem to go on forever...")
             x()
             print(".")
             x()
