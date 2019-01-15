@@ -310,7 +310,7 @@ def lint_trap():
             x()
             lint.stats()
             x()
-            print("It seems like you'll have to fight the creature. *sighhhhhhhh -_- . You just wanted to go home and watch Netflix but no, here you are.")
+            print("It seems like you'll have to fight the creature. ugh -_- . You just wanted to go home and watch Netflix but no, here you are.")
             x()
 
             #The player can complete this room only if they got the hairpin after fighting The Rat.
@@ -321,6 +321,7 @@ def lint_trap():
                 x()
                 player.battle(lint)
                 x()
+                #The game is programmed for the player to win the battle if they have the hairpin.
                 solved['lint_room'] = True
 
                 #continuation of description
@@ -383,6 +384,15 @@ def lint_trap():
                 x()
                 player.battle(lint)
                 x()
+                game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
+                if game == "checkpoint":
+                    blower_room()
+                elif game == "stop":
+                    sys.exit()
+                else:
+                    while game not in ("checkpoint", "stop"):
+                        invalid()
+                        game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
 
         #if the player does not have the face mask
         else:
@@ -416,7 +426,20 @@ def lint_trap():
         c4 = input("> ").lower()
         while True:
             if c4 == "box":
-                print("The box is empty.")
+                if "candy" in player.inventory.items():
+                    print("The box is empty.")
+                elif solved['motor_room'] = True::
+                    print("You remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
+                    x()
+                    print("The box opened! Inside, you find candy?")
+                    x()
+                    player.inventory['food']['candy'] = 1
+                    print("~ New food acquired: candy ~")
+                    x()
+                    player.health += 100
+                    print(f"The candy increases your health to {player.health}.")
+                else:
+                    print("The box is locked, but you don't see a keyhole. You may need someone's help to open it.")
                 c4 = input("> ").lower()
             elif c4 == "right":
                 blower_room()
@@ -487,7 +510,7 @@ def blower_room():
             lint_trap()
             break
         else:
-            while c3 not in ("front", "behind", "left"):
+            while c3 not in ("front", "behind", "left", "fan"):
                 invalid()
                 c3 = input("> ").lower()
 
