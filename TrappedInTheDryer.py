@@ -161,7 +161,7 @@ lint = Opponent("The Lint Monster", 80, 30, 8)
 ########
 
 #These are the things that need to be unlocked/solved by the player during the game.
-solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False}
+solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False, 'motor_room': False}
 
 #Heating Duct Room - Player will fight a rat to obtain a new weapon that will help defeat future opponents.
 def heating_duct():
@@ -178,6 +178,8 @@ def heating_duct():
     while True:
         if c2 == "front":
             while True:
+
+                #if the player did not complete the Heating Duct Room
                 if solved['heating_duct'] == False:
                     print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
                     x()
@@ -227,6 +229,7 @@ def heating_duct():
                     c2 = input("> ").lower()
                     break
 
+                #if the player has completed this room
                 else:
                     print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a dead rat in front of you. You remember that this was where you fought with the rat. You turn around and go back.")
                     x()
@@ -250,9 +253,36 @@ def heating_duct():
 def air_flow():
 
     #This is the description of the room.
-    print("You are now standing in the Air Flow Room.")
+    print("You are now standing in the Air Flow Room. On the floor, you see a 'face mask'. To the 'right', there is an open metal door.")
+
+    c5 = input("> ").lower()
+    while True:
+        if c5 == "face mask":
+            player.inventory['clothes']['face mask'] = 1
+            print("~ New clothes acquired: face mask ~")
+            x()
+            print("The face mask looks like the one surgeons and doctors wear. It should be useful if you want to lessen your air pollution exposure.")
+            x()
+            c5 = input("> ").lower()
+        elif c5 == "right":
+            drum_room()
+            break
+        else:
+            while c5 not in ('face mask', 'right'):
+                invalid()
+                c5 = input("> ").lower()
 
     return
+
+#Heating Element Room -
+def heating_element():
+
+    #This is the description of the room.
+
+#Belt Tensioner Room -
+def belt_tensioner():
+
+    #This is the description of the room.
 
 #Lint Trap Room -
 def lint_trap():
@@ -291,11 +321,68 @@ def lint_trap():
                 x()
                 player.battle(lint)
                 x()
+                solved['lint_room'] = True
 
+                #continuation of description
+                print("The room is still dusty. In the corner of the room, you see a locked 'box' covered in spider webs and dust. To the 'right', there is a small flap covering a hole. 'Behind' you and to the 'left' are two archways.\n")
+
+                #if the player completed the Motor Room
+                if solved['motor_room'] = True:
+                    c4 = input("> ").lower()
+                    while True:
+                        if c4 == "box":
+                            print("You remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
+                            x()
+                            print("The box opened! Inside, you find candy?")
+                            x()
+                            player.inventory['food']['candy'] = 1
+                            print("~ New food acquired: candy ~")
+                            x()
+                            player.health += 100
+                            print(f"The candy increases your health to {player.health}.")
+                            x()
+                            c4 = input("> ").lower()
+                        elif c4 == "right":
+                            blower_room()
+                            break
+                        elif c4 == "behind":
+                            heating_element()
+                            break
+                        elif c4 == "left":
+                            belt_tensioner()
+                            break
+                        else:
+                            while c4 not in ('box', 'right', 'behind', 'left'):
+                                invalid()
+                                c4 = input("> ").lower()
+
+                #if the player did not complete the Motor Room
+                else:
+                    c4 = input("> ").lower()
+                    while True:
+                        if c4 == "box":
+                            print("The box is locked, but you don't see a keyhole. You may need someone's help to open it.")
+                            c4 = input("> ").lower()
+                        elif c4 == "right":
+                            blower_room()
+                            break
+                        elif c4 == "behind":
+                            heating_element()
+                            break
+                        elif c4 == "left":
+                            belt_tensioner()
+                            break
+                        else:
+                            while c4 not in ('box', 'right', 'behind', 'left'):
+                                invalid()
+                                c4 = input("> ").lower()
+
+            #The player will fail if they fight with the sock.
             else:
                 print("You decide to continue fighting with your trusty sock.")
                 x()
                 player.battle(lint)
+                x()
 
         #if the player does not have the face mask
         else:
@@ -325,7 +412,25 @@ def lint_trap():
         x()
 
         #continuation of description
-        print("The room is still dusty. ")
+        print("The room is still dusty. In the corner of the room, you see a 'box' covered in spider webs and dust. To the 'right', there is a small flap covering a hole. 'Behind' you and to the 'left' are two archways.\n")
+        c4 = input("> ").lower()
+        while True:
+            if c4 == "box":
+                print("The box is empty.")
+                c4 = input("> ").lower()
+            elif c4 == "right":
+                blower_room()
+                break
+            elif c4 == "behind":
+                heating_element()
+                break
+            elif c4 == "left":
+                belt_tensioner()
+                break
+            else:
+                while c4 not in ('box', 'right', 'behind', 'left'):
+                    invalid()
+                    c4 = input("> ").lower()
 
     return
 
@@ -344,7 +449,7 @@ def blower_room():
     x()
 
     #This is the description of the room.
-    print("You are now standing in the Blower Room. In 'front' of you, stairs ascend into darkness. Right 'behind' you is an archway. To the 'left', there is a small flap covering a hole.")
+    print("You are now standing in the Blower Room. There is a small 'fan' in the middle of the room. In 'front' of you, stairs ascend into darkness. Right 'behind' you is an archway. To the 'left', there is a small flap covering a hole.")
 
     c3 = input("> ").lower()
     while True:
@@ -365,6 +470,14 @@ def blower_room():
             x()
             drum_room()
             break
+        elif c3 == "fan":
+            print("You see a metal key attached to a string dangling from one of the fan's blades. You squeeze your hand into the fan and grab the key.")
+            x()
+            solved['open_metal_door'] = True
+            player.inventory['items']['metal key'] = 1
+            print("~ New item acquired: metal key ~")
+            x()
+            c3 = input("> ").lower()
         elif c3 == "behind":
             motor_room()
             break
