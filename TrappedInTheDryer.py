@@ -3,9 +3,9 @@
 ###################################
 import sys
 
-####################################
-# FUNCTIONS USED OFTEN IN THE GAME #
-####################################
+#############################################
+# FUNCTIONS THAT ARE USED OFTEN IN THE GAME #
+#############################################
 
 #This is for the player to press enter to continue with the descriptions in the game. This will break up the description so it would be easier to read.
 def x():
@@ -90,9 +90,11 @@ class Player(Character):
                 "hairpin": 0,
                 "hair comb": 0,
             },
+            "clothes": {
+                "jacket": 0,
+            },
             "food": {
                 "gum": 0,
-                "hard candy": 0
             }
         }
 
@@ -106,6 +108,7 @@ class Player(Character):
 
     def battle(self, opponent):
         """Player fights opponent"""
+        print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
         print("Let the battle begin!")
         x()
         while player.health > 0 and opponent.health > 0:
@@ -130,8 +133,10 @@ class Player(Character):
                 break
         if player.health > 0 and opponent.health <= 0:
             print("You won the battle! Congratulations!")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - -")
         else:
             print("Sorry, you lost.")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - -")
         return
 
 #opponent character setup
@@ -147,6 +152,7 @@ class Opponent(Character):
 
 #These are the opponents in the game.
 rat = Opponent("The Rat", 15, 25, 5)
+lint = Opponent("The Lint Monster", 80, 30, 8)
 
 ########
 # GAME #
@@ -172,6 +178,19 @@ def heating_duct():
             while True:
                 if solved['heating_duct'] == False:
                     print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
+                    x()
+                    print('          __             _,-"~^"-.                                ')
+                    print('        _// )      _,-"~`         `.                              ')
+                    print('      ." ( /`"-,-"`                 ;                             ')
+                    print('     / 6                             ;                            ')
+                    print('    /           ,             ,-"     ;                           ')
+                    print('   (,__.--.      \           /        ;                           ')
+                    print("    //'   /`-.\   |          |        `._________                 ")
+                    print("      _.-'_/`  )  )--...,,,___\     \-----------,)                ")
+                    print("""    ((("~` _.-'.-'           __`-.   )         //                """)
+                    print('          ((("`             (((---~"`         //                  ')
+                    print('                                             ((________________   ')
+                    print('                                             `----""""~~~~^^^```  ')
                     x()
                     print("The rat is remarkably large and well-fed. It seems to be angry at you. You may get into a fight with a rat today. *sigh*")
                     x()
@@ -227,6 +246,24 @@ def air_flow():
 
     #This is the description of the room.
     print("You are now standing in the Air Flow Room.")
+
+#Lint Trap Room -
+def lint_trap():
+
+    #This is the description of the room.
+    print("You are now standing in the Lint Trap Room.")
+
+#Motor Room -
+def motor_room():
+
+    #This is the description of the room.
+    print("You are now standing in the Motor Room.")
+
+#Blower Room -
+def blower_room():
+
+    #This is the description of the room.
+    print("You are now standing in the Blower Room.")
 
 #               game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
                 #if game == "checkpoint":
