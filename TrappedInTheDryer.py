@@ -95,6 +95,8 @@ class Player(Character):
             },
             "food": {
                 "gum": 0,
+            },
+            "items": {
             }
         }
 
@@ -104,6 +106,7 @@ class Player(Character):
             print(f"{k}:")
             for k_, v_ in self.inventory[k].items():
                 print(f" - {k_} ({v_})")
+            print(" ")
         return
 
     def battle(self, opponent):
@@ -159,7 +162,7 @@ lint = Opponent("The Lint Monster", 80, 30, 8)
 ########
 
 #These are the things that need to be unlocked/solved by the player during the game.
-solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False}
+solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False}
 
 #Heating Duct Room - Player will fight a rat to obtain a new weapon that will help defeat future opponents.
 def heating_duct():
@@ -247,11 +250,52 @@ def air_flow():
     #This is the description of the room.
     print("You are now standing in the Air Flow Room.")
 
+    return
+
 #Lint Trap Room -
 def lint_trap():
 
     #This is the description of the room.
-    print("You are now standing in the Lint Trap Room.")
+    print("You are now standing in the Lint Trap Room. The room is very dusty, and you immediately start coughing.")
+    x()
+
+    if solved['lint_room'] == False:
+        print("*COUGH! COUGH! COUGH!")
+        x()
+        print("Oh no! It looks like you aren't alone in the room. Your coughing probably disturbed its sleep. The creature looked as if it was made out of lint...")
+        x()
+        print("*COUGH! COUGH! COUGH!")
+        x()
+        if "face mask" in self.inventory.items():
+            print("You remember that you have a face mask in your inventory. You quickly put it on to stop coughing.")
+        else:
+            print("You can't stop coughing, not realizing that the creature is sneakily approaching you. The next thing you know...")
+            x()
+            print("       YOU WERE KNOCKED OUT")
+            x()
+            print(".")
+            x()
+            print(".")
+            x()
+            print(".")
+            x()
+            game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
+            if game == "checkpoint":
+                blower_room()
+            elif game == "stop":
+                sys.exit()
+            else:
+                while game not in ("checkpoint", "stop"):
+                    invalid()
+                    game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
+    else:
+        print("You remember to use the face mask from before. You quickly put it on to stop coughing. You look around, but there seems to be nothing of importance here.")
+        x()
+
+        #continuation of description
+        print("The room is still dusty. ")
+
+    return
 
 #Motor Room -
 def motor_room():
@@ -259,23 +303,56 @@ def motor_room():
     #This is the description of the room.
     print("You are now standing in the Motor Room.")
 
+    return
+
 #Blower Room -
 def blower_room():
 
-    #This is the description of the room.
-    print("You are now standing in the Blower Room.")
+    print("~ checkpoint ~")
+    x()
 
-#               game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
-                #if game == "checkpoint":
-                #    heating_duct()
-                #else:
-                #    sys.exit()
+    #This is the description of the room.
+    print("You are now standing in the Blower Room. In 'front' of you, stairs ascend into darkness. Right 'behind' you is an archway. To the 'left', there is a small flap covering a hole.")
+
+    c3 = input("> ").lower()
+    while True:
+        if c3 == "front":
+            print("You begin climbing the stairs. They seem to go on forever...")
+            x()
+            print(".")
+            x()
+            print(".")
+            x()
+            print("...climbing...")
+            x()
+            print(".")
+            x()
+            print(".")
+            x()
+            print("You finally pass through a doorway.")
+            x()
+            drum_room()
+            break
+        elif c3 == "behind":
+            motor_room()
+            break
+        elif c3 == "left":
+            print("You get on your knees before pulling the flap up and crawling inside.")
+            x()
+            lint_trap()
+            break
+        else:
+            while c3 not in ("front", "behind", "left"):
+                invalid()
+                c3 = input("> ").lower()
+
+    return
 
 #Dryer Drum Room - This is the room where the player starts in and where the player will (hopefully) escape the dryer.
 def drum_room():
 
     #This is the description of the room.
-    print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a gap in the wall. To the 'left', there is metal door. To the 'right', stairs ascend into darkness.\n")
+    print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a gap in the wall. To the 'left', there is metal door. To the 'right', stairs descend into darkness.\n")
 
     c1 = input("> ").lower()
     while True:
@@ -309,13 +386,13 @@ def drum_room():
                 break
 
         elif c1 == "right":
-            print("You begin climbing the stairs. They seem to go on forever...")
+            print("You begin walking down the stairs. They seem to go on forever...")
             x()
             print(".")
             x()
             print(".")
             x()
-            print("...climbing...")
+            print("...walking...")
             x()
             print(".")
             x()
