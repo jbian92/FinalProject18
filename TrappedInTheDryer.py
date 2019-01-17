@@ -90,7 +90,6 @@ class Player(Character):
                 "hair comb": 0,
             },
             "clothes": {
-                "jacket": 0,
             },
             "food": {
                 "gum": 0,
@@ -138,6 +137,7 @@ class Player(Character):
             print("- - - - - - - - - - - - - - - - - - - - - - - - -")
         else:
             print(" ~ YOU DIED! ~")
+            x()
             print("              ______               ")
             print("        _____/      \\_____        ")
             print("       |  _     ___   _   ||       ")
@@ -169,6 +169,7 @@ class Opponent(Character):
 #These are the opponents in the game.
 rat = Opponent("The Rat", 15, 25, 5)
 lint = Opponent("The Lint Monster", 80, 30, 8)
+ghost = Opponent("Steve the Ghost", 20, 25, 3)
 
 ########
 # GAME #
@@ -362,12 +363,15 @@ def lint_trap():
                             x()
                             c4 = input("> ").lower()
                         elif c4 == "right":
+                            print("")
                             blower_room()
                             break
                         elif c4 == "behind":
+                            print("")
                             heating_element()
                             break
                         elif c4 == "left":
+                            print("")
                             belt_tensioner()
                             break
                         else:
@@ -380,15 +384,18 @@ def lint_trap():
                     c4 = input("> ").lower()
                     while True:
                         if c4 == "box":
-                            print("The box is locked, but you don't see a keyhole. You may need someone's help to open it.")
+                            print("The box is locked, but you don't see a keyhole. You may need someone's help to open it.\n")
                             c4 = input("> ").lower()
                         elif c4 == "right":
+                            print("")
                             blower_room()
                             break
                         elif c4 == "behind":
+                            print("")
                             heating_element()
                             break
                         elif c4 == "left":
+                            print("")
                             belt_tensioner()
                             break
                         else:
@@ -404,6 +411,8 @@ def lint_trap():
                 x()
                 game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
                 if game == "checkpoint":
+                    print("")
+                    player.health += 100
                     blower_room()
                 elif game == "stop":
                     sys.exit()
@@ -478,10 +487,71 @@ def lint_trap():
 #Motor Room -
 def motor_room():
 
-    #This is the description of the room.
-    print("You are now standing in the Motor Room. *NEED TO FINISH PRESS ENTER TO GO BACK")
+    #This tells the player where they are.
+    print("\nYou are now standing in the Motor Room.")
     x()
-    blower_room()
+
+    #if the player did not complete the Motor Room
+    if solved['motor_room'] == False:
+        print("In the middle of the room, there is a motor. Sitting on the motor is a... um... ghost?")
+        x()
+        print("              .--,               ")
+        print("             /  (                ")
+        print("            /    \               ")
+        print("           /      \              ")
+        print("          /  0  0  \             ")
+        print("  ((()   |    ()    |   ()))     ")
+        print("  \  ()  (  .____.  )  ()  /     ")
+        print("   |` \_/ \  `""`  / \_/ `|      ")
+        print("   |       `.'--'.`       |      ")
+        print("    \        `""`        /       ")
+        print("     \                  /        ")
+        print("      `.              .'    ,    ")
+        print("       |`             |  _.'|    ")
+        print("       |              `-'  /     ")
+        print("       \                 .'      ")
+        print("        `.____________.-'        ")
+        x()
+        print("ghost: Hello! I'm Steve! What's your name?")
+        x()
+        print(f"you: My name is {player.name}.")
+        x()
+        print("Steve the Ghost: Cool! Wanna be friends?")
+        a1 = input("> ").lower()
+        while True:
+            if a1 == "yes":
+                print("\nyou: ...sure..")
+                x()
+                print("you: but I need to find a way out of this dryer.")
+                x()
+                print("Steve: ε(´סּ︵סּ`)з  So... you're going to leave me?")
+                x()
+                print("you: Yes?")
+                x()
+                print("Steve: I WILL NOT ALLOW THIS! YOU MUST FIGHT ME AND WIN TO BE ABLE TO LEAVE!")
+                x()
+                break
+            elif a1 == "no":
+                print("\nyou: Not really. I just want to get out of this dryer.")
+                x()
+                print("Steve: ٩(╬ʘ益ʘ╬)۶ WHY NOT?!")
+                x()
+                print("Steve: I WILL NOT ALLOW THIS! YOU MUST FIGHT ME OR YOU SHALL BE STUCK IN THIS ROOM WITH ME FOREVER!")
+                x()
+                break
+            else:
+                while a1 not in ("yes", "no"):
+                    print("Do you want to be friends with Steve? Enter 'yes' or 'no'.")
+                    a1 = input("> ").lower()
+
+        player.stats()
+        x()
+        ghost.stats()
+        x()
+        player.battle(ghost)
+        x()
+        #The game is designed for the player to beat Steve no matter what.
+        print("Steve")
 
     return
 
@@ -492,7 +562,7 @@ def blower_room():
     x()
 
     #This is the description of the room.
-    print("You are now standing in the Blower Room. There is a small 'fan' in the middle of the room. In 'front' of you, stairs ascend into darkness. Right 'behind' you is an archway. To the 'left', there is a small flap covering a hole.")
+    print("You are now standing in the Blower Room. There is a small 'fan' in the middle of the room. In 'front' of you, stairs ascend into darkness. 'Behind' you is an archway. To the 'left', there is a small flap covering a hole.")
 
     c3 = input("> ").lower()
     while True:
