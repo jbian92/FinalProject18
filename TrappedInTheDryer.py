@@ -2,6 +2,7 @@
 # NEEDED FOR THE GAME TO FUNCTION #
 ###################################
 import sys
+import random
 
 #############################################
 # FUNCTIONS THAT ARE USED OFTEN IN THE GAME #
@@ -92,7 +93,6 @@ class Player(Character):
             "clothes": {
             },
             "food": {
-                "gum": 0,
             },
             "items": {
             }
@@ -177,6 +177,28 @@ ghost = Opponent("Steve the Ghost", 20, 25, 3)
 
 #These are the things that need to be unlocked/solved by the player during the game.
 solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False, 'motor_room': False, 'mask': False, 'hairpin': False}
+
+#This is the game the player will play in the Motor Room - guess the number Steve the Ghost is thinking of.
+def guessing_game():
+    secret = random.randint(0,20)
+    num_guesses = 0
+    guesses_left = 10
+
+    while num_guesses < 10:
+      guess = int(input("\nSteve: Pick a number between 0 and 20. > "))
+      num_guesses = num_guesses + 1
+      guesses_left = guesses_left - 1
+      if guess > secret:
+        print(f"\nSteve: Your guess is too high. You have {guesses_left} guesses left.")
+      elif guess < secret:
+        print(f"\nSteve: Your guess is too low. You have {guesses_left} guesses left.")
+      else:
+        break
+
+    if guess == secret:
+        solved['motor_room'] = True
+
+    return
 
 #Heating Duct Room - Player will fight a rat to obtain a new weapon that will help defeat future opponents.
 def heating_duct():
@@ -551,7 +573,68 @@ def motor_room():
         player.battle(ghost)
         x()
         #The game is designed for the player to beat Steve no matter what.
-        print("Steve")
+        print("Steve faints and you just stare at him on the ground. Ghosts can't die if they're already dead, right?")
+        x()
+        print("You look around the room and see a piece of gum near the motor. You pick it up.")
+        x()
+        player.health += 90
+        player.inventory['food']['gum'] = 1
+        print("~ New food acquired: gum ~")
+        x()
+        print(f"The gum increases your health to {player.health}.")
+        x()
+        print("You turn around to leave and see Steve floating back up from the ground.")
+        x()
+        print("Steve: Are you leaving now?")
+        x()
+        print("You nod.")
+        x()
+        print("Steve: ಥ_ಥ At least play a game with me. I promise if you win, I will help you out of this dryer.")
+        x()
+        print("You: ..okay.")
+        x()
+        print("Steve: ʘ‿ʘ Yay! Let's play a guessing game. I'm thinking of a number between 0 and 20. You have 10 guesses. What's the number?")
+        guessing_game()
+        if solved['motor_room'] == True:
+            print("Steve: You got it! And like I promised, I'll help you out of the dryer. I just unlocked something for you. (/¯◡ ‿ ◡)/¯")
+            x()
+        else:
+            print("Steve: Sorry! You have failed to guess the number in 10 tries. The number was {secret}. I guess you're stuck here with me. (＾∇＾)")
+            x()
+            play_again = input("Unless you want to try again? > ").lower()
+            while True:
+                if play_again == "yes":
+                    guessing_game()
+                elif play_again == "no":
+                    break
+                else:
+                    while play_again not in ('yes', 'no'):
+                        print("Do you want to play again? Enter 'yes' or 'no'.")
+                        play_again = input("> ").lower()
+        print("Steve: Well, I guess it's time for you to leave me. Good luck!")
+        #continuation of description
+        print("You look around the room. You see Steve just floating around. The motor is in the middle of the room. In 'front' of you, there is an archway.")
+        c7 = input("> ").lower()
+        while True:
+            if c7 == "front":
+                blower_room()
+                break
+            else:
+                while c7 not in ('front'):
+                    invalid()
+                    c7 = input("> ").lower()
+    else:
+        #continuation of description
+        print("You see Steve just floating around the room. There is a motor in the middle of the room. In 'front' of you, there is an archway.")
+        c6 = input("> ").lower()
+        while True:
+            if c6 == "front":
+                blower_room()
+                break
+            else:
+                while c6 not in ('front'):
+                    invalid()
+                    c6 = input("> ").lower()
 
     return
 
