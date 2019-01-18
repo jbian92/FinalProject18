@@ -194,6 +194,29 @@ class Player(Character):
                         print("")
                         invalid()
                         f1 = input("Do you want to 'attack' or 'defend'?").lower()
+        if player.health > 0 and opponent.health <= 0:
+            print("You won the battle! Congratulations!")
+            solved['open_lever'] = True
+            print("- - - - - - - - - - - - - - - - - - - - - - - - -")
+        else:
+            print(" ~ YOU DIED! ~")
+            x()
+            print("              ______               ")
+            print("        _____/      \\_____        ")
+            print("       |  _     ___   _   ||       ")
+            print("       | | \     |   | \  ||       ")
+            print("       | |  |    |   |  | ||       ")
+            print("       | |_/     |   |_/  ||       ")
+            print("       | | \     |   |    ||       ")
+            print("       | |  \    |   |    ||       ")
+            print("       | |   \. _|_. | .  ||       ")
+            print("       |                  ||       ")
+            print("       |                  ||       ")
+            print("       |                  ||       ")
+            print("       | *   **    * **   |**      ")
+            print("  \))/.,(//,,..,,\||(,,.,\\,.((//  ")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - -")
+        return
 
 #opponent character setup
 class Opponent(Character):
@@ -210,7 +233,7 @@ class Opponent(Character):
 rat = Opponent("The Rat", 15, 25, 5)
 lint = Opponent("The Lint Monster", 80, 30, 8)
 ghost = Opponent("Steve the Ghost", 20, 25, 3)
-final_boss = Opponent("The Discarded Laundry Monster", 0, 0, 0)
+final_boss = Opponent("The Discarded Laundry Monster", 100, 30, 5)
 
 ########
 # GAME #
@@ -358,7 +381,24 @@ def air_flow():
 def heating_element():
 
     #This is the description of the room.
-    print("You are now standing in the Heating Element Room.")
+    print("\nYou are now standing in the Heating Element Room.")
+
+    if solved['open_lever'] == False:
+        print("\n???: I heard that you want to get out of this dryer. I am The Discarded Laundry Monster! You must defeat me to escape!")
+        x()
+        player.stats()
+        x()
+        final_boss.stats()
+        x()
+        player.battle_boss(final_boss)
+
+    else:
+        print("You have beaten the final boss. You should try and get out of the dryer.")
+
+        #continuation of description
+        print("")
+
+    return
 
 #Belt Tensioner Room -
 def belt_tensioner():
