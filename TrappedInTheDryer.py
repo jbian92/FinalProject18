@@ -274,6 +274,50 @@ def guessing_game():
 
     return
 
+###############
+# END OF GAME #
+###############
+
+#player chooses to escape the dryer
+def yes_ending():
+    print("You pull down the lever and the dryer door opens. You walk towards the door, ready to finally go home.")
+    x()
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print("THANK YOU FOR PLAYING TRAPPED IN THE DRYER! GOODBYE!")
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    x()
+    sys.exit()
+
+    return
+
+#player chooses to stay with Steve the Ghost
+def no_ending():
+    print("You decide not to leave Steve the Ghost all alone in the dryer. You turn around and go back to the Motor Room where Steve is still floating around.")
+    x()
+    print("Steve: *gasp* You came back!")
+    x()
+    print("For the rest of your life, you were stuck in the dryer with Steve. You had a great time with the ghost. You guys played hide-and-seek, tag, and of course, guess the correct number.")
+    x()
+    print("...until one day, the dryer door opened again and another person got sucked in.")
+    x()
+    print(".")
+    x()
+    print(".")
+    x()
+    print(".")
+    x()
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print("THANK YOU FOR PLAYING TRAPPED IN THE DRYER! GOODBYE!")
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    x()
+    sys.exit()
+
+    return
+
+#########
+# ROOMS #
+#########
+
 #Heating Duct Room - Player will fight a rat to obtain a new weapon that will help defeat future opponents.
 def heating_duct():
 
@@ -905,7 +949,32 @@ def drum_room():
 
             #This is the end of the game.
             else:
-                print()
+                print("The glass key fits in the keyhole. You now have access to the lever.")
+                x()
+                c12 = input("Do you want to pull the lever? > ")
+                while True:
+                    if c12 == "yes":
+                        yes_ending()
+                        break
+                    elif c12 == "no":
+                        print("Do you not want to get out of the dryer? If you want, you can stay and be with Steve the Ghost.")
+                        x()
+                        c13 = input("Do you want to pull the lever? > ")
+                        while True:
+                            if c13 == "yes":
+                                yes_ending()
+                                break
+                            elif c13 == "no":
+                                no_ending()
+                                break
+                            else:
+                                while c13 not in ("yes", "no"):
+                                    print("Do you want to pull the lever? Enter 'yes' or 'no'.")
+                                    c13 = input("> ")
+                    else:
+                        while c12 not in ("yes", "no"):
+                            print("Do you want to pull the lever? Enter 'yes' or 'no'.")
+                            c12 = input("> ")
 
                 break
 
@@ -947,6 +1016,10 @@ def drum_room():
                 c1 = input("> ").lower()
 
     return
+
+#################
+# START OF GAME #
+#################
 
 #This is the beginning of the game.
 def begin_game():
