@@ -156,10 +156,14 @@ class Player(Character):
 
     def battle_boss(self, opponent):
         """Player fights final boss"""
+        opponent_action = "attack defend".split()
         print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
+        print("For this battle, you can choose to either attack or defend. If you choose to defend, no damage will be done to you. {opponent.name} can also choose to either attack or defend. However, if {opponent.name} chooses to defend, its defense increases by 5. Choose wisely.")
+        x()
         print("Let the battle begin!")
         x()
         while player.health > 0 and opponent.health > 0:
+            #player can choose to attack or defend
             f1 = input("Do you want to 'attack' or 'defend'? > ").lower()
             while True:
                 if f1 == "attack":
@@ -172,14 +176,20 @@ class Player(Character):
                     print(f"{opponent.name} is down to {opponent.health} health.")
                     x()
                     if player.health > 0 and opponent.health > 0:
-                        print(f"{opponent.name} attacks you.")
-                        x()
-                        dmg_opponent = opponent.attack - player.defense
-                        if dmg_opponent <= 0:
-                          dmg_opponent = 0
-                        player.health -= dmg_opponent
-                        print(f"You are down to {player.health} health.")
-                        x()
+                        action = random.choice(opponent_action)
+                        if action == "attack":
+                            print(f"{opponent.name} attacks you.")
+                            x()
+                            dmg_opponent = opponent.attack - player.defense
+                            if dmg_opponent <= 0:
+                              dmg_opponent = 0
+                            player.health -= dmg_opponent
+                            print(f"You are down to {player.health} health.")
+                            x()
+                        else:
+                            opponent.defense += 5
+                            print(f"{opponent.name} decides to defend. {opponent.name}'s defense increased to {opponent.defense}.")
+                            x()
                         break
                     else:
                         break
@@ -391,20 +401,58 @@ def heating_element():
         final_boss.stats()
         x()
         player.battle_boss(final_boss)
+        if solved['open_lever'] == True:
+            print("You have beaten the final boss. Behind the fallen monster, you see a glass key. You pick it up.")
+            x()
+            player.inventory['items']['glass key'] = 1
+            print("~ New item acquired: glass key ~")
+            x()
+
+            #continuation of description
+            print("You look around. In 'front' of you, there is an archway. There is nothing else that is special inside the room.")
+            c11 = input("> ").lower()
+            while True:
+                if c11 == "front":
+                    lint_trap()
+                    break
+                else:
+                    while c11 != "front":
+                        invalid()
+                        c11 = input("> ").lower()
+
+        else:
+            game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
+            while True:
+                if game == "checkpoint":
+                    print("")
+                    #player's health will become 100 every time they die (same health as the player's at the beginning of the game)
+                    player.health = 100
+                    lint_trap()
+                    break
+                elif game == "stop":
+                    sys.exit()
+                    break
+                else:
+                    while game not in ("checkpoint", "stop"):
+                        invalid()
+                        game = input("\nYou were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
 
     else:
         print("You have beaten the final boss. You should try and get out of the dryer.")
 
         #continuation of description
-        print("")
+        print("In 'front' of you, there is an archway. There is nothing special inside the room.")
+        c11 = input("> ").lower()
+        while True:
+            if c11 == "front":
+                lint_trap()
+                break
+            else:
+                while c11 != "front":
+                    invalid()
+                    c11 = input("> ").lower()
 
     return
-
-#Belt Tensioner Room -
-def belt_tensioner():
-
-    #This is the description of the room.
-    print("")
 
 #Lint Trap Room -
 def lint_trap():
@@ -446,8 +494,11 @@ def lint_trap():
                 #The game is programmed for the player to win the battle if they have the hairpin.
                 solved['lint_room'] = True
 
+                print("~ checkpoint ~")
+                x()
+
                 #continuation of description
-                print("The room is still dusty. In the corner of the room, you see a locked 'box' covered in spider webs and dust. To the 'right', there is a small flap covering a hole. 'Behind' you and to the 'left' are two archways.\n")
+                print("The room is still dusty. In the corner of the room, you see a locked 'box' covered in spider webs and dust. To the 'right', there is a small flap covering a hole. 'Behind' you is an archway.\n")
 
                 #if the player completed the Motor Room
                 if solved['motor_room'] == True:
@@ -477,9 +528,6 @@ def lint_trap():
                         elif c4 == "behind":
                             heating_element()
                             break
-                        elif c4 == "left":
-                            belt_tensioner()
-                            break
                         else:
                             while c4 not in ('box', 'right', 'behind', 'left'):
                                 invalid()
@@ -499,9 +547,6 @@ def lint_trap():
                         elif c4 == "behind":
                             heating_element()
                             break
-                        elif c4 == "left":
-                            belt_tensioner()
-                            break
                         else:
                             while c4 not in ('box', 'right', 'behind', 'left'):
                                 invalid()
@@ -517,7 +562,8 @@ def lint_trap():
                 while True:
                     if game == "checkpoint":
                         print("")
-                        player.health += 100
+                        #player's health will return to 100 (same as what they start with in the beginning of the game)
+                        player.health = 100
                         blower_room()
                         break
                     elif game == "stop":
@@ -555,9 +601,11 @@ def lint_trap():
     else:
         print("You remember to use the face mask from before. You quickly put it on to stop coughing. You look around, but there seems to be nothing of importance here.")
         x()
+        print("~ checkpoint ~")
+        x()
 
         #continuation of description
-        print("The room is still dusty. In the corner of the room, you see a 'box' covered in spider webs and dust. To the 'right', there is a small flap covering a hole. 'Behind' you and to the 'left' are two archways.\n")
+        print("The room is still dusty. In the corner of the room, you see a 'box' covered in spider webs and dust. To the 'right', there is a small flap covering a hole. 'Behind' you is an archway.\n")
         c4 = input("> ").lower()
         while True:
             if c4 == "box":
@@ -583,9 +631,6 @@ def lint_trap():
                 break
             elif c4 == "behind":
                 heating_element()
-                break
-            elif c4 == "left":
-                belt_tensioner()
                 break
             else:
                 while c4 not in ('box', 'right', 'behind', 'left'):
