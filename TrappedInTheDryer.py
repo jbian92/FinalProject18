@@ -42,7 +42,7 @@ def help_info():
     print("\n- - - - - - - - - - - - - - - - - - - - - - - - -\n")
     print("You will be exploring places and interacting with items in the game. After every line of text that does not require a command, press enter to continue.")
     x()
-    print("You will be asked a question as to what you would like to do. You will be given the choices within the question.")
+    print("The commands you will use in the game will be given.")
     x()
     print(f"""For example:
 Do you want to 'go through the door' or 'walk up the stairs'?
@@ -50,7 +50,7 @@ You can either type in 'go through the door' or 'walk up the stairs'. The comman
     x()
     print("You will need to type in a command if you see '>' after a line of text.")
     x()
-    print("If you are not given a command to use and you do not see '>' at the end of the text, you are most likely being given a description. You will need to press enter to continue.\n")
+    print("If you are not given a command to use and you do not see '>' at the end of the text, you are most likely being given a description/story. You will need to press enter to continue reading it.\n")
     print("~ Press enter to continue. ~")
     x()
     print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
