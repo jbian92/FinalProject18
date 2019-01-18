@@ -88,7 +88,6 @@ class Player(Character):
         self.inventory = {
             "weapons": {
                 "sock": 1,
-                "hair comb": 0,
             },
             "clothes": {
             },
@@ -155,6 +154,45 @@ class Player(Character):
             print("- - - - - - - - - - - - - - - - - - - - - - - - -")
         return
 
+    def battle_boss(self, opponent):
+        """Player fights final boss"""
+        print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
+        print("Let the battle begin!")
+        x()
+        while player.health > 0 and opponent.health > 0:
+            f1 = input("Do you want to 'attack' or 'defend'?").lower()
+            while True:
+                if f1 == "attack":
+                    print(f"\nYou attack {opponent.name}.")
+                    x()
+                    dmg_player = self.attack - opponent.defense
+                    if dmg_player <= 0:
+                      dmg_player = 0
+                    opponent.health -= dmg_player
+                    print(f"{opponent.name} is down to {opponent.health} health.")
+                    x()
+                    if player.health > 0 and opponent.health > 0:
+                        print(f"{opponent.name} attacks you.")
+                        x()
+                        dmg_opponent = opponent.attack - player.defense
+                        if dmg_opponent <= 0:
+                          dmg_opponent = 0
+                        player.health -= dmg_opponent
+                        print(f"You are down to {player.health} health.")
+                        x()
+                    else:
+                        break
+                elif f1 == "defend":
+                    print(f"\n{opponent.name} attacks you.")
+                    x()
+                    print("You take no damage.")
+                    x()
+                else:
+                    while f1 not in ('attack', 'defend'):
+                        print("")
+                        invalid()
+                        f1 = input("Do you want to 'attack' or 'defend'?").lower()
+
 #opponent character setup
 class Opponent(Character):
     """Generic opponent class"""
@@ -170,6 +208,7 @@ class Opponent(Character):
 rat = Opponent("The Rat", 15, 25, 5)
 lint = Opponent("The Lint Monster", 80, 30, 8)
 ghost = Opponent("Steve the Ghost", 20, 25, 3)
+final_boss = Opponent("The Discarded Laundry Monster", 0, 0, 0)
 
 ########
 # GAME #
