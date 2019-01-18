@@ -160,7 +160,7 @@ class Player(Character):
         print("Let the battle begin!")
         x()
         while player.health > 0 and opponent.health > 0:
-            f1 = input("Do you want to 'attack' or 'defend'?").lower()
+            f1 = input("Do you want to 'attack' or 'defend'? > ").lower()
             while True:
                 if f1 == "attack":
                     print(f"\nYou attack {opponent.name}.")
@@ -193,7 +193,7 @@ class Player(Character):
                     while f1 not in ('attack', 'defend'):
                         print("")
                         invalid()
-                        f1 = input("Do you want to 'attack' or 'defend'?").lower()
+                        f1 = input("Do you want to 'attack' or 'defend'? > ").lower()
         if player.health > 0 and opponent.health <= 0:
             print("You won the battle! Congratulations!")
             solved['open_lever'] = True
@@ -240,7 +240,7 @@ final_boss = Opponent("The Discarded Laundry Monster", 100, 30, 5)
 ########
 
 #These are the things that need to be unlocked/solved by the player during the game.
-solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False, 'motor_room': False, 'mask': False, 'hairpin': False, 'motor': False}
+solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False, 'motor_room': False, 'mask': False, 'hairpin': False, 'motor': False, 'candy': False}
 
 #This is the game the player will play in the Motor Room - guess the number Steve the Ghost is thinking of.
 def guessing_game():
@@ -364,10 +364,10 @@ def air_flow():
             solved['mask'] = True
             print("\n~ New clothes acquired: face mask ~")
             x()
-            print("The face mask looks like the one surgeons and doctors wear. It should be useful if you want to lessen your air pollution exposure.")
+            print("The face mask looks like the one surgeons and doctors wear. It should be useful if you want to lessen your air pollution exposure.\n")
             c5 = input("> ").lower()
         elif c5 == "right":
-            x()
+            print("")
             drum_room()
             break
         else:
@@ -437,7 +437,7 @@ def lint_trap():
 
             #The player can complete this room only if they got the hairpin after fighting The Rat.
             if solved['hairpin'] == True:
-                print("On the bright side, you can use your new weapon: hairpin!")
+                print("On the bright side, you can use your new weapon, hairpin, to stab The Lint Monster!")
                 x()
                 player.invt()
                 x()
@@ -454,16 +454,20 @@ def lint_trap():
                     c4 = input("> ").lower()
                     while True:
                         if c4 == "box":
-                            print("\nYou remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
-                            x()
-                            print("The box opened! Inside, you find candy?")
-                            x()
-                            player.inventory['food']['candy'] = 1
-                            print("~ New food acquired: candy ~")
-                            x()
-                            player.health += 100
-                            print(f"The candy increases your health to {player.health}.")
-                            x()
+                            if solved['candy'] == False:
+                                print("\nYou remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
+                                x()
+                                print("The box opened! Inside, you find candy?")
+                                x()
+                                player.inventory['food']['candy'] = 1
+                                print("~ New food acquired: candy ~")
+                                solved['candy'] = True
+                                x()
+                                player.health += 100
+                                print(f"The candy increases your health to {player.health}.")
+                                x()
+                            else:
+                                print("The box is empty.")
                             c4 = input("> ").lower()
                         elif c4 == "right":
                             print("\nYou get on your knees before pulling the flap up and crawling inside.")
@@ -545,7 +549,7 @@ def lint_trap():
                 else:
                     while game not in ("checkpoint", "stop"):
                         invalid()
-                        game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
+                        game = input("\nYou were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
 
     #if the player completed this room
     else:
@@ -557,20 +561,21 @@ def lint_trap():
         c4 = input("> ").lower()
         while True:
             if c4 == "box":
-                if "candy" in player.inventory.items():
+                if solved['candy'] == True:
                     print("The box is empty.")
                 elif solved['motor_room'] == True:
-                    print("You remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
+                    print("\nYou remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
                     x()
                     print("The box opened! Inside, you find candy?")
                     x()
                     player.inventory['food']['candy'] = 1
                     print("~ New food acquired: candy ~")
+                    solved['candy'] = True
                     x()
                     player.health += 100
                     print(f"The candy increases your health to {player.health}.")
                 else:
-                    print("The box is locked, but you don't see a keyhole. You may need someone's help to open it.")
+                    print("\nThe box is locked, but you don't see a keyhole. You may need someone's help to open it.")
                 c4 = input("> ").lower()
             elif c4 == "right":
                 blower_room()
@@ -706,7 +711,7 @@ def motor_room():
                 blower_room()
                 break
             else:
-                while c7 not in ('front'):
+                while c7 != "front":
                     invalid()
                     c7 = input("> ").lower()
 
@@ -721,7 +726,7 @@ def motor_room():
                     print("\nSteve: You got it! And like I promised, I'll help you out of the dryer. I just unlocked something for you. (/¯◡ ‿ ◡)/¯")
                     x()
                 else:
-                    print("\nSteve: Sorry! You have failed to guess the number in 10 tries. The number was {secret}. I guess you're stuck here with me. (＾∇＾)")
+                    print("\nSteve: Sorry! You have failed to guess the number in 10 tries. I guess you're stuck here with me. (＾∇＾)")
                     x()
                     play_again_1 = input("Unless you want to try again? > ").lower()
                     while True:
@@ -743,7 +748,7 @@ def motor_room():
                         blower_room()
                         break
                     else:
-                        while c9 not in ('front'):
+                        while c9 != "front":
                             invalid()
                             c9 = input("> ").lower()
                 break
@@ -757,7 +762,7 @@ def motor_room():
                         blower_room()
                         break
                     else:
-                        while c10 not in ('front'):
+                        while c10 != "front":
                             invalid()
                             c10 = input("> ").lower()
                 break
@@ -776,7 +781,7 @@ def motor_room():
                 blower_room()
                 break
             else:
-                while c6 not in ('front'):
+                while c6 != "front":
                     invalid()
                     c6 = input("> ").lower()
 
@@ -819,7 +824,7 @@ def blower_room():
                 print("~ New item acquired: metal key ~")
                 x()
             else:
-                print("There is nothing special about the fan.")
+                print("\nThere is nothing special about the fan.")
             c3 = input("> ").lower()
         elif c3 == "behind":
             motor_room()
