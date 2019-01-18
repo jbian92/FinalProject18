@@ -180,6 +180,7 @@ class Player(Character):
                         player.health -= dmg_opponent
                         print(f"You are down to {player.health} health.")
                         x()
+                        break
                     else:
                         break
                 elif f1 == "defend":
@@ -187,6 +188,7 @@ class Player(Character):
                     x()
                     print("You take no damage.")
                     x()
+                    break
                 else:
                     while f1 not in ('attack', 'defend'):
                         print("")
