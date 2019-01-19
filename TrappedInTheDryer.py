@@ -152,58 +152,96 @@ class Player(Character):
             print("       | *   **    * **   |**      ")
             print("  \))/.,(//,,..,,\||(,,.,\\,.((//  ")
             print("- - - - - - - - - - - - - - - - - - - - - - - - -")
+
         return
 
     def battle_boss(self, opponent):
         """Player fights final boss"""
         opponent_action = "attack defend".split()
         print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
-        print("For this battle, you can choose to either attack or defend. If you choose to defend, no damage will be done to you. {opponent.name} can also choose to either attack or defend. However, if {opponent.name} chooses to defend, its defense increases by 5. Choose wisely.")
+        print("For this battle, you can choose to either attack or defend. If you choose to defend, your defense will increase by 2. {opponent.name} can also choose to either attack or defend. If {opponent.name} chooses to defend, its defense increases by 5. Choose wisely.")
         x()
         print("Let the battle begin!")
         x()
         while player.health > 0 and opponent.health > 0:
+
             #player can choose to attack or defend
             f1 = input("Do you want to 'attack' or 'defend'? > ").lower()
             while True:
+
+                #player chooses to attack
                 if f1 == "attack":
                     print(f"\nYou attack {opponent.name}.")
                     x()
                     dmg_player = self.attack - opponent.defense
                     if dmg_player <= 0:
-                      dmg_player = 0
+                        dmg_player = 0
                     opponent.health -= dmg_player
                     print(f"{opponent.name} is down to {opponent.health} health.")
                     x()
+
+                    #if player and opponent are still alive
                     if player.health > 0 and opponent.health > 0:
                         action = random.choice(opponent_action)
+
+                        #opponent chooses to attack
                         if action == "attack":
                             print(f"{opponent.name} attacks you.")
                             x()
                             dmg_opponent = opponent.attack - player.defense
                             if dmg_opponent <= 0:
-                              dmg_opponent = 0
+                                dmg_opponent = 0
                             player.health -= dmg_opponent
                             print(f"You are down to {player.health} health.")
                             x()
+
+                        #opponent chooses to defend
                         else:
                             opponent.defense += 5
                             print(f"{opponent.name} decides to defend. {opponent.name}'s defense increased to {opponent.defense}.")
                             x()
+
                         break
+
+                    #if player/opponent has died
                     else:
                         break
+
+                #player chooses to defend
                 elif f1 == "defend":
-                    print(f"\n{opponent.name} attacks you.")
+                    player.defense += 2
+                    print(f"\nYour defense increased to {player.defense}.")
                     x()
-                    print("You take no damage.")
-                    x()
-                    break
+
+                    #if player and opponent are still alive
+                    if player.health > 0 and opponent.health > 0:
+                        action = random.choice(opponent_action)
+
+                        #opponent chooses to attack
+                        if action == "attack":
+                            print(f"{opponent.name} attacks you.")
+                            x()
+                            dmg_opponent = opponent.attack - player.defense
+                            if dmg_opponent <= 0:
+                                dmg_opponent = 0
+                            player.health -= dmg_opponent
+                            print(f"You are down to {player.health} health.")
+                            x()
+
+                        #opponent chooses to defend
+                        else:
+                            opponent.defense += 5
+                            print(f"{opponent.name} decides to defend. {opponent.name}'s defense increased to {opponent.defense}.")
+                            x()
+
+                        break
+
                 else:
                     while f1 not in ('attack', 'defend'):
                         print("")
                         invalid()
-                        f1 = input("Do you want to 'attack' or 'defend'? > ").lower()
+                        f1 = input("\nDo you want to 'attack' or 'defend'? > ").lower()
+
         if player.health > 0 and opponent.health <= 0:
             print("You won the battle! Congratulations!")
             solved['open_lever'] = True
@@ -243,7 +281,7 @@ class Opponent(Character):
 rat = Opponent("The Rat", 15, 25, 5)
 lint = Opponent("The Lint Monster", 80, 30, 8)
 ghost = Opponent("Steve the Ghost", 20, 25, 3)
-final_boss = Opponent("The Discarded Laundry Monster", 100, 30, 5)
+final_boss = Opponent("The Discarded Laundry Monster", 100, 50, 0)
 
 ########
 # GAME #
