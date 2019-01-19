@@ -328,7 +328,6 @@ def yes_ending():
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
     x()
     sys.exit()
-
     return
 
 #player chooses to stay with Steve the Ghost
@@ -352,7 +351,6 @@ def no_ending():
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
     x()
     sys.exit()
-
     return
 
 #########
@@ -377,7 +375,7 @@ def heating_duct():
 
                 #if the player did not complete the Heating Duct Room
                 if solved['heating_duct'] == False:
-                    print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a rat right in front of you.")
+                    print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finish adjusting to the darkness, you see a rat right in front of you.")
                     x()
                     print('          __             _,-"~^"-.                                ')
                     print('        _// )      _,-"~`         `.                              ')
@@ -428,7 +426,7 @@ def heating_duct():
 
                 #if the player has completed this room
                 else:
-                    print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finished adjusting to the darkness, you see a dead rat in front of you. You remember that this was where you fought with the rat. You turn around and go back.")
+                    print("\nYou open the door and walk inside. You hope that the heating duct will lead you out of the dryer, but once your eyes finish adjusting to the darkness, you see a dead rat in front of you. You remember that this was where you fought with the rat. You turn around and go back.")
                     x()
                     print("You are now standing in the Heating Duct Room. The room is warm and cozy. In 'front' of you, you see a door slightly open, which is where you just came from. Behind you, there is a 'gap' in the wall.\n")
                     c2 = input("> ").lower()
@@ -756,6 +754,7 @@ def motor_room():
         x()
         print(f"you: My name is {player.name}.")
         x()
+
         print("Steve the Ghost: Cool! Wanna be friends?")
         a1 = input("> ").lower()
         while True:
@@ -814,6 +813,7 @@ def motor_room():
         x()
         print("Steve: ʘ‿ʘ Yay! Let's play a guessing game. I'm thinking of a number between 0 and 20. You have 10 guesses. What's the number?")
         x()
+
         guessing_game()
         if solved['motor_room'] == True:
             print("\nSteve: You got it! And like I promised, I'll help you out of the dryer. I just unlocked something for you. (/¯◡ ‿ ◡)/¯")
@@ -832,6 +832,7 @@ def motor_room():
                     while play_again not in ('yes', 'no'):
                         print("\nDo you want to play again? Enter 'yes' or 'no'.")
                         play_again = input("> ").lower()
+
         print("Steve: Well, I guess it's time for you to leave me. Good luck!")
         x()
         #continuation of description
@@ -918,7 +919,7 @@ def motor_room():
 
     return
 
-#Blower Room -
+#Blower Room - Player needs to get the metal key from this room to get into the Air Flow Room.
 def blower_room():
 
     print("\n~ checkpoint ~")
@@ -946,7 +947,9 @@ def blower_room():
             x()
             drum_room()
             break
+
         elif c3 == "fan":
+            #This allows the player to go to the Air Flow Room.
             if solved['open_metal_door'] == False:
                 print("\nYou see a metal key attached to a string dangling from one of the fan's blades. You squeeze your hand into the fan and grab the key.")
                 x()
@@ -957,14 +960,17 @@ def blower_room():
             else:
                 print("\nThere is nothing special about the fan.")
             c3 = input("> ").lower()
+
         elif c3 == "behind":
             motor_room()
             break
+
         elif c3 == "left":
             print("\nYou get on your knees before pulling the flap up and crawling inside.")
             x()
             lint_trap()
             break
+
         else:
             while c3 not in ("front", "behind", "left", "fan"):
                 invalid()
@@ -1028,7 +1034,6 @@ def drum_room():
             if solved['open_metal_door'] == False:
                 print("\nThe door is closed and locked.")
                 c1 = input("> ").lower()
-
             else:
                 print("\nThe key fits in the keyhole. The door opens and you walk inside.\n")
                 air_flow()
@@ -1082,23 +1087,38 @@ def begin_game():
     x()
     print("Your body is halfway inside the dryer but the sock still seems so far away. You keep crawling until your body is completely inside the dryer. You look around, amazed at how big the dryer is.")
     x()
-    print("You can finally reach the sock. However, as soon as your fingers touch the sock, the dryer turns back on and you feel yourself slowly turning along with the dryer drum. The spinning starts to get faster but you can't seem to get out!")
+    print("You can finally reach the sock! However, as soon as your fingers touch the sock, the dryer turns back on and you feel yourself slowly turning along with the dryer drum. The spinning starts to get faster but you can't seem to get out!")
     x()
     print(".")
     x()
+    print(".")
+    x()
+    print("           _,met$$$$$gg.         ")
+    print("        ,g$$$$$$$$$$$$$$$P.      ")
+    print('      ,g$$P""       """Y$$.".    ')
+    print("     ,$$P'              `$$$.    ")
+    print("   ',$$P       ,ggs.     `$$b:   ")
+    print("""   `d$$'     ,$P"'   .    $$$    """)
+    print("    $$P      d$'     ,    $$P    ")
+    print("    $$:      $$.   -    ,d$$'    ")
+    print("    $$;      Y$b._   _,d$P'      ")
+    print("""    Y$$.    `.`"Y$$$$P"'         """)
+    print("""    `$$b      "-.__              """)
+    print("     `Y$$b                       ")
+    print("      `Y$$.                      ")
     print(".")
     x()
     print(".")
     x()
     print("After what seems like forever, the spinning finally stops. You slowly get up, a bit dizzy from all that spinning. You look around and realize that you have shrunk and are now stuck inside the dryer.")
     x()
+
     print("~ Remember that anything in quotes ' ' can be used as a command. ~")
     x()
-
     drum_room()
 
-#introduction to the game
+#introduction to the game (first thing player reads)
 print("Welcome to Trapped in the Dryer! This is a text-based game where you have to find your way out of a dryer! Good luck!")
 player = Player()
-print("\n")
+print("")
 start()
