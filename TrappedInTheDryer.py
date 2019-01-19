@@ -34,7 +34,7 @@ def start():
             break
         else:
             while start not in ("play", "help"):
-                start = input("That is not a valid option. Please type 'play' or 'help'. > ")
+                start = input("\nThat is not a valid option. Please type 'play' or 'help'. > ")
     return
 
 #This tells the player how to play the game.
@@ -259,7 +259,10 @@ def guessing_game():
     guesses_left = 10
 
     while num_guesses < 10:
-      guess = int(input("\nSteve: Pick a number between 0 and 20. > "))
+      guess = input("\nSteve: Pick a number between 0 and 20. > ")
+      while guess.isdigit() == False:
+          guess = input("\nSteve: That is not a number. Pick a number between 0 and 20. > ")
+      guess = int(guess)
       num_guesses = num_guesses + 1
       guesses_left = guesses_left - 1
       if guess > secret:
@@ -791,7 +794,8 @@ def motor_room():
                     while play_again not in ('yes', 'no'):
                         print("\nDo you want to play again? Enter 'yes' or 'no'.")
                         play_again = input("> ").lower()
-        print("Steve: Well, I guess it's time for you to leave me. Good luck!\n")
+        print("Steve: Well, I guess it's time for you to leave me. Good luck!")
+        x()
         #continuation of description
         print("You look around the room. You see Steve just floating around. The motor is in the middle of the room. In 'front' of you, there is an archway.")
         c7 = input("> ").lower()
