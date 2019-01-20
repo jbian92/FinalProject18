@@ -236,6 +236,10 @@ class Player(Character):
 
                         break
 
+                    #if player/opponent has died
+                    else:
+                        break
+
                 else:
                     while f1 not in ('attack', 'defend'):
                         print("")
@@ -264,6 +268,7 @@ class Player(Character):
             print("       | *   **    * **   |**      ")
             print("  \))/.,(//,,..,,\||(,,.,\\,.((//  ")
             print("- - - - - - - - - - - - - - - - - - - - - - - - -")
+
         return
 
 #opponent character setup
@@ -643,7 +648,7 @@ def lint_trap():
                     c4 = input("> ").lower()
                     while True:
                         if c4 == "box":
-                            print("The box is locked, but you don't see a keyhole. You may need someone's help to open it.\n")
+                            print("\nThe box is locked, but you don't see a keyhole. You may need someone's help to open it.\n")
                             c4 = input("> ").lower()
                         elif c4 == "right":
                             print("\nYou get on your knees before pulling the flap up and crawling inside.")
@@ -659,7 +664,9 @@ def lint_trap():
 
             #The player will fail if they fight with the sock.
             else:
-                print("You decide to continue fighting with your trusty sock.")
+                player.invt()
+                x()
+                print("You decide to fight with your trusty sock.")
                 x()
                 player.battle(lint)
                 x()
@@ -1070,7 +1077,7 @@ def drum_room():
                                     c13 = input("> ")
                     else:
                         while c12 not in ("yes", "no"):
-                            print("Do you want to pull the lever? Enter 'yes' or 'no'.")
+                            print("\nDo you want to pull the lever? Enter 'yes' or 'no'.")
                             c12 = input("> ")
 
                 break
@@ -1089,7 +1096,7 @@ def drum_room():
                 air_flow()
                 break
             else:
-                print("\nThe key fits in the keyhole. The door opens and you walk inside.")
+                print("\nThe metal key fits in the keyhole. The door opens and you walk inside.")
                 x()
                 air_flow()
                 break
@@ -1161,6 +1168,7 @@ def begin_game():
     print("""    `$$b      "-.__              """)
     print("     `Y$$b                       ")
     print("      `Y$$.                      ")
+    x()
     print(".")
     x()
     print(".")
