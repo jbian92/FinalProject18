@@ -14,7 +14,7 @@
   * Classes: https://drive.google.com/file/d/1opdcgaxjx1BQEhDeVviblHKA-eDEdrma/view?usp=sharing
   * Before the Game: https://drive.google.com/file/d/15qh-MCgwhaDe3aJ7nf8RArGkCkVXOfPG/view?usp=sharing
   * Start of the Game: https://drive.google.com/file/d/1KPGB_gGfAgselQqlJwI-MO-ZbL8fM4Xc/view?usp=sharing
-  * End of the Game:
+  * End of the Game: https://drive.google.com/file/d/13iK_Azxt74P7U9V0026qPRTj6TSqN9Jj/view?usp=sharing
   * Part of the Game: https://drive.google.com/file/d/1DGNpb69RZxDD7Nv70W7sP24_sT1qYvBX/view?usp=sharing
   * Rooms in the Game:
     * Floor 1:
