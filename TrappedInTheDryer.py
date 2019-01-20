@@ -159,7 +159,7 @@ class Player(Character):
         """Player fights final boss"""
         opponent_action = "attack defend".split()
         print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
-        print("For this battle, you can choose to either attack or defend. If you choose to defend, your defense will increase by 2. {opponent.name} can also choose to either attack or defend. If {opponent.name} chooses to defend, its defense increases by 5. Choose wisely.")
+        print(f"For this battle, you can choose to either attack or defend. If you choose to defend, your defense will increase by 1. {opponent.name} can also choose to either attack or defend. If {opponent.name} chooses to defend, its defense increases by 1. Choose wisely.")
         x()
         print("Let the battle begin!")
         x()
@@ -197,7 +197,7 @@ class Player(Character):
 
                         #opponent chooses to defend
                         else:
-                            opponent.defense += 5
+                            opponent.defense += 1
                             print(f"{opponent.name} decides to defend. {opponent.name}'s defense increased to {opponent.defense}.")
                             x()
 
@@ -209,7 +209,7 @@ class Player(Character):
 
                 #player chooses to defend
                 elif f1 == "defend":
-                    player.defense += 2
+                    player.defense += 1
                     print(f"\nYour defense increased to {player.defense}.")
                     x()
 
@@ -230,7 +230,7 @@ class Player(Character):
 
                         #opponent chooses to defend
                         else:
-                            opponent.defense += 5
+                            opponent.defense += 1
                             print(f"{opponent.name} decides to defend. {opponent.name}'s defense increased to {opponent.defense}.")
                             x()
 
@@ -321,18 +321,18 @@ def guessing_game():
 
 #player chooses to escape the dryer
 def yes_ending():
-    print("You pull down the lever and the dryer door opens. You walk towards the door, ready to finally go home.")
+    print("\nYou pull down the lever and the dryer door opens. You walk towards the door, ready to finally go home.")
     x()
-    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
     print("THANK YOU FOR PLAYING TRAPPED IN THE DRYER! GOODBYE!")
-    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print("\n- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
     x()
     sys.exit()
     return
 
 #player chooses to stay with Steve the Ghost
 def no_ending():
-    print("You decide not to leave Steve the Ghost all alone in the dryer. You turn around and go back to the Motor Room where Steve is still floating around.")
+    print("\nYou decide not to leave Steve the Ghost all alone in the dryer. You turn around and go back to the Motor Room where Steve is still floating around.")
     x()
     print("Steve: *gasp* You came back!")
     x()
@@ -357,7 +357,7 @@ def no_ending():
 # ROOMS #
 #########
 
-#Heating Duct Room - Player will fight a rat to obtain a new weapon that will help defeat future opponents.
+#Heating Duct Room - The player will fight a rat to obtain a new weapon that will help defeat future opponents.
 def heating_duct():
 
     print("\nYou get on your knees and crawl through the small gap.")
@@ -444,40 +444,59 @@ def heating_duct():
 
     return
 
-#Air Flow Room -
+#Air Flow Room - The player needs to get the face mask in this room to be able to fight The Lint Monster in the Lint Trap Room.
 def air_flow():
 
-    #This is the description of the room.
-    print("You are now standing in the Air Flow Room. On the floor, you see a 'face mask'. To the 'right', there is an open metal door.")
+    if solved['mask'] == False:
+        #This is the description of the room.
+        print("You are now standing in the Air Flow Room. On the floor, you see a 'face mask'. To the 'right', there is an open metal door.")
 
-    c5 = input("> ").lower()
-    while True:
-        if c5 == "face mask":
-            player.inventory['clothes']['face mask'] = 1
-            solved['mask'] = True
-            print("\n~ New clothes acquired: face mask ~")
-            x()
-            print("The face mask looks like the one surgeons and doctors wear. It should be useful if you want to lessen your air pollution exposure.\n")
-            c5 = input("> ").lower()
-        elif c5 == "right":
-            print("")
-            drum_room()
-            break
-        else:
-            while c5 not in ('face mask', 'right'):
-                invalid()
+        c5 = input("> ").lower()
+        while True:
+            if c5 == "face mask":
+                player.inventory['clothes']['face mask'] = 1
+                solved['mask'] = True
+                print("\nYou walk over and pick up the face mask.")
+                x()
+                print("~ New clothes acquired: face mask ~")
+                x()
+                print("The face mask looks like the one surgeons and doctors wear. It should be useful if you want to lessen your air pollution exposure.\n")
                 c5 = input("> ").lower()
+            elif c5 == "right":
+                print("")
+                drum_room()
+                break
+            else:
+                while c5 not in ('face mask', 'right'):
+                    invalid()
+                    c5 = input("> ").lower()
+
+    else:
+        #This is the description of the room.
+        print("You are now standing in the Air Flow Room. To the 'right', there is an open metal door. There is nothing special about this room.")
+
+        c5 = input("> ").lower()
+        while True:
+            if c5 == "right":
+                print("")
+                drum_room()
+                break
+            else:
+                while c5 != right:
+                    invalid()
+                    c5 = input("> ").lower()
 
     return
 
-#Heating Element Room -
+#Heating Element Room - The player will fight the final boss before they can finally escape the dryer.
 def heating_element():
 
     #This is the description of the room.
     print("\nYou are now standing in the Heating Element Room.")
+    x()
 
     if solved['open_lever'] == False:
-        print("\n???: I heard that you want to get out of this dryer. I am The Discarded Laundry Monster! You must defeat me to escape!")
+        print("???: I heard that you want to get out of this dryer. I am The Discarded Laundry Monster! You must defeat me to escape!")
         x()
         player.stats()
         x()
@@ -485,6 +504,7 @@ def heating_element():
         x()
         player.battle_boss(final_boss)
         if solved['open_lever'] == True:
+            x()
             print("You have beaten the final boss. Behind the fallen monster, you see a glass key. You pick it up.")
             x()
             player.inventory['items']['glass key'] = 1
@@ -504,6 +524,7 @@ def heating_element():
                         c11 = input("> ").lower()
 
         else:
+            x()
             game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
             while True:
                 if game == "checkpoint":
@@ -521,7 +542,9 @@ def heating_element():
                         game = input("\nYou were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
 
     else:
+        x()
         print("You have beaten the final boss. You should try and get out of the dryer.")
+        x()
 
         #continuation of description
         print("In 'front' of you, there is an archway. There is nothing special inside the room.")
@@ -537,18 +560,18 @@ def heating_element():
 
     return
 
-#Lint Trap Room -
+#Lint Trap Room - The player will fight The Lint Monster in this room.
 def lint_trap():
 
     #This is the description of the room.
-    print("You are now standing in the Lint Trap Room. The room is very dusty, and you immediately start coughing.")
+    print("\nYou are now standing in the Lint Trap Room. The room is very dusty, and you immediately start coughing.")
     x()
 
     #if the player has not completed the Lint Trap Room
     if solved['lint_room'] == False:
         print("*COUGH! COUGH! COUGH!")
         x()
-        print("Oh no! It looks like you aren't alone in the room. Your coughing probably disturbed its sleep. The creature looked as if it was made out of lint...")
+        print("Oh no! It looks like you aren't alone in the room. Your coughing probably disturbed its sleep. The creature seems to be made out of lint...")
         x()
         print("*COUGH! COUGH! COUGH!")
         x()
@@ -557,7 +580,7 @@ def lint_trap():
         if solved['mask'] == True:
             print("You remember that you have a face mask in your inventory. You quickly put it on to stop coughing.")
             x()
-            print("You look up and catch the creature trying to sneak up at you. You both freeze.")
+            print("You look up and catch the creature trying to sneak up on you. You both freeze.")
             x()
             player.stats()
             x()
@@ -591,7 +614,7 @@ def lint_trap():
                             if solved['candy'] == False:
                                 print("\nYou remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
                                 x()
-                                print("The box opened! Inside, you find candy?")
+                                print("The box opened! Inside, you find... candy?")
                                 x()
                                 player.inventory['food']['candy'] = 1
                                 print("~ New food acquired: candy ~")
@@ -601,7 +624,7 @@ def lint_trap():
                                 print(f"The candy increases your health to {player.health}.")
                                 x()
                             else:
-                                print("The box is empty.")
+                                print("\nThe box is empty.")
                             c4 = input("> ").lower()
                         elif c4 == "right":
                             print("\nYou get on your knees before pulling the flap up and crawling inside.")
@@ -682,7 +705,7 @@ def lint_trap():
 
     #if the player completed this room
     else:
-        print("You remember to use the face mask from before. You quickly put it on to stop coughing. You look around, but there seems to be nothing of importance here.")
+        print("You remember to use the face mask from before. You quickly put it on to stop coughing.")
         x()
         print("~ checkpoint ~")
         x()
@@ -693,11 +716,11 @@ def lint_trap():
         while True:
             if c4 == "box":
                 if solved['candy'] == True:
-                    print("The box is empty.")
+                    print("\nThe box is empty.")
                 elif solved['motor_room'] == True:
                     print("\nYou remember that the ghost from the Motor Room unlocked something for you. You think it may be this box.")
                     x()
-                    print("The box opened! Inside, you find candy?")
+                    print("The box opened! Inside, you find... candy?")
                     x()
                     player.inventory['food']['candy'] = 1
                     print("~ New food acquired: candy ~")
@@ -807,7 +830,27 @@ def motor_room():
         x()
         print("You nod.")
         x()
-        print("Steve: ಥ_ಥ At least play a game with me. I promise if you win, I will help you out of this dryer.")
+        print("Steve: ಥ_ಥ At least play a game with me. It gets lonely in here.")
+        x()
+
+        steve_background = input("Do you want to know more about Steve?").lower()
+        while True:
+            if steve_background == "yes":
+                print("you: If you're a ghost, can't you get out of here?")
+                x()
+                print("Steve: no (⌣́_⌣̀) I died in this dryer so now I'm stuck haunting this dryer.")
+                x()
+                print("you: Wait... you also got stuck in here? And you DIED?!")
+                x()
+                print("Steve: Yeah... well, anyways, do you want to play a game with me? I promise if you win, I will help you out of this dryer.")
+                break
+            elif steve_background == "no":
+                print("I promise if you win, I will help you out of this dryer.")
+                break
+            else:
+                invalid()
+                steve_background = input("Enter 'yes' or 'no'. > ").lower()
+
         x()
         print("You: ..okay.")
         x()
@@ -997,7 +1040,7 @@ def drum_room():
 
             #This is the end of the game.
             else:
-                print("The glass key fits in the keyhole. You now have access to the lever.")
+                print("\nThe glass key fits in the keyhole. You now have access to the lever.")
                 x()
                 c12 = input("Do you want to pull the lever? > ")
                 while True:
@@ -1017,7 +1060,7 @@ def drum_room():
                                 break
                             else:
                                 while c13 not in ("yes", "no"):
-                                    print("Do you want to pull the lever? Enter 'yes' or 'no'.")
+                                    print("\nDo you want to pull the lever? Enter 'yes' or 'no'.")
                                     c13 = input("> ")
                     else:
                         while c12 not in ("yes", "no"):
@@ -1035,7 +1078,8 @@ def drum_room():
                 print("\nThe door is closed and locked.")
                 c1 = input("> ").lower()
             else:
-                print("\nThe key fits in the keyhole. The door opens and you walk inside.\n")
+                print("\nThe key fits in the keyhole. The door opens and you walk inside.")
+                x()
                 air_flow()
                 break
 
