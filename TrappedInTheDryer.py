@@ -346,9 +346,9 @@ def no_ending():
     x()
     print(".")
     x()
-    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
     print("THANK YOU FOR PLAYING TRAPPED IN THE DRYER! GOODBYE!")
-    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print("\n- - - - - - - - - - - - - - - - - - - - - - - - - - - -")
     x()
     sys.exit()
     return
@@ -482,7 +482,7 @@ def air_flow():
                 drum_room()
                 break
             else:
-                while c5 != right:
+                while c5 != "right":
                     invalid()
                     c5 = input("> ").lower()
 
@@ -542,7 +542,6 @@ def heating_element():
                         game = input("\nYou were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
 
     else:
-        x()
         print("You have beaten the final boss. You should try and get out of the dryer.")
         x()
 
@@ -830,26 +829,26 @@ def motor_room():
         x()
         print("You nod.")
         x()
-        print("Steve: ಥ_ಥ At least play a game with me. It gets lonely in here.")
+        print("Steve: ಥ_ಥ At least play a game with me before you leave. It gets lonely in here.")
         x()
 
-        steve_background = input("Do you want to know more about Steve?").lower()
+        steve_background = input("Do you want to know more about Steve? > ").lower()
         while True:
             if steve_background == "yes":
-                print("you: If you're a ghost, can't you get out of here?")
+                print("\nYou: Lonely? If you're a ghost, can't you get out of here?")
                 x()
                 print("Steve: no (⌣́_⌣̀) I died in this dryer so now I'm stuck haunting this dryer.")
                 x()
-                print("you: Wait... you also got stuck in here? And you DIED?!")
+                print("You: Wait... you also got stuck in here? And you DIED?!")
                 x()
                 print("Steve: Yeah... well, anyways, do you want to play a game with me? I promise if you win, I will help you out of this dryer.")
                 break
             elif steve_background == "no":
-                print("I promise if you win, I will help you out of this dryer.")
+                print("\nSteve: I promise if you win, I will help you out of this dryer.")
                 break
             else:
                 invalid()
-                steve_background = input("Enter 'yes' or 'no'. > ").lower()
+                steve_background = input("\nEnter 'yes' or 'no'. > ").lower()
 
         x()
         print("You: ..okay.")
@@ -858,23 +857,28 @@ def motor_room():
         x()
 
         guessing_game()
-        if solved['motor_room'] == True:
-            print("\nSteve: You got it! And like I promised, I'll help you out of the dryer. I just unlocked something for you. (/¯◡ ‿ ◡)/¯")
-            x()
-        else:
-            print("\nSteve: Sorry! You have failed to guess the number in 10 tries. I guess you're stuck here with me. (＾∇＾)")
-            x()
-            play_again = input("Unless you want to try again? > ").lower()
-            while True:
-                if play_again == "yes":
-                    guessing_game()
+        while True:
+            if solved['motor_room'] == True:
+                print("\nSteve: You got it! And like I promised, I'll help you out of the dryer. I just unlocked something for you. (/¯◡ ‿ ◡)/¯")
+                x()
+                break
+            else:
+                print("\nSteve: Sorry! You have failed to guess the number in 10 tries. I guess you're stuck here with me. (＾∇＾)")
+                x()
+                play_again = input("Steve: Unless you want to try again? > ").lower()
+                while True:
+                    if play_again == "yes":
+                        guessing_game()
+                        break
+                    elif play_again == "no":
+                        print("")
+                        break
+                    else:
+                        while play_again not in ('yes', 'no'):
+                            print("\nDo you want to play again? Enter 'yes' or 'no'.")
+                            play_again = input("> ").lower()
+                if play_again == "no":
                     break
-                elif play_again == "no":
-                    break
-                else:
-                    while play_again not in ('yes', 'no'):
-                        print("\nDo you want to play again? Enter 'yes' or 'no'.")
-                        play_again = input("> ").lower()
 
         print("Steve: Well, I guess it's time for you to leave me. Good luck!")
         x()
@@ -914,7 +918,9 @@ def motor_room():
                             while play_again_1 not in ('yes', 'no'):
                                 print("\nDo you want to play again? Enter 'yes' or 'no'.")
                                 play_again_1 = input("> ").lower()
-                print("Steve: Well, I guess it's time for you to leave me. Good luck!\n")
+                print("Steve: Well, I guess it's time for you to leave me. Good luck!")
+                x()
+
                 #continuation of description
                 print("You look around the room. You see Steve just floating around. The motor is in the middle of the room. In 'front' of you, there is an archway.")
                 c9 = input("> ").lower()
@@ -1048,7 +1054,7 @@ def drum_room():
                         yes_ending()
                         break
                     elif c12 == "no":
-                        print("Do you not want to get out of the dryer? If you want, you can stay and be with Steve the Ghost.")
+                        print("\nDo you not want to get out of the dryer? If you want, you can stay and be with Steve the Ghost.")
                         x()
                         c13 = input("Do you want to pull the lever? > ")
                         while True:
@@ -1077,6 +1083,11 @@ def drum_room():
             if solved['open_metal_door'] == False:
                 print("\nThe door is closed and locked.")
                 c1 = input("> ").lower()
+            elif solved['mask'] == True:
+                print("\nYou walk inside the room.")
+                x()
+                air_flow()
+                break
             else:
                 print("\nThe key fits in the keyhole. The door opens and you walk inside.")
                 x()
