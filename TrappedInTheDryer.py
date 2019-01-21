@@ -792,26 +792,26 @@ def motor_room():
         x()
         print("ghost: Hello! I'm Steve! What's your name?")
         x()
-        print(f"you: My name is {player.name}.")
+        print(f"You: My name is {player.name}.")
         x()
 
         print("Steve the Ghost: Cool! Wanna be friends?")
         a1 = input("> ").lower()
         while True:
             if a1 == "yes":
-                print("\nyou: ...sure..")
+                print("\nYou: ...sure..")
                 x()
-                print("you: but I need to find a way out of this dryer.")
+                print("You: but I need to find a way out of this dryer.")
                 x()
                 print("Steve: ε(´סּ︵סּ`)з  So... you're going to leave me?")
                 x()
-                print("you: Yes?")
+                print("You: Yes?")
                 x()
                 print("Steve: I WILL NOT ALLOW THIS! YOU MUST FIGHT ME AND WIN TO BE ABLE TO LEAVE!")
                 x()
                 break
             elif a1 == "no":
-                print("\nyou: Not really. I just want to get out of this dryer.")
+                print("\nYou: Not really. I just want to get out of this dryer.")
                 x()
                 print("Steve: ٩(╬ʘ益ʘ╬)۶ WHY NOT?!")
                 x()
@@ -910,6 +910,7 @@ def motor_room():
 
         print("Steve: Well, I guess it's time for you to leave me. Good luck!")
         x()
+
         #continuation of description
         print("You look around the room. You see Steve just floating around. The motor is in the middle of the room. In 'front' of you, there is an archway.")
         c7 = input("> ").lower()

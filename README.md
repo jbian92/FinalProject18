@@ -21,7 +21,7 @@
       * Lint Trap Room: https://drive.google.com/file/d/1bF9E5tBpOkBlQQHzDnvGfFTURYFnQ2NE/view?usp=sharing
       * Heating Element Room: https://drive.google.com/file/d/1mK2TI_wukRUvb732vu7bm9QDAUqwc7oI/view?usp=sharing
       * Blower Room: https://drive.google.com/file/d/13vjg49lOX5pDd7tAeTGnd1zz1Wx5y49F/view?usp=sharing
-      * Motor Room
+      * Motor Room: https://drive.google.com/file/d/15QWCQi42AOB6JyAIVP9WmdUBmh7pjW_j/view?usp=sharing
     * Floor 2:
       * Dryer Drum Room: https://drive.google.com/file/d/1gfAn_-GrK1tKxWXcH6ZJMGzRHyuGfOi6/view?usp=sharing
       * Air Flow Room: https://drive.google.com/file/d/1UCDrQAWHaX3Upqa1YApnGeAecUdnIDKM/view?usp=sharing
