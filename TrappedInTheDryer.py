@@ -406,7 +406,7 @@ def heating_duct():
                     player.invt()
                     x()
                     print("You can use your sock that you were trying to grab as a weapon against the rat.")
-                    player.attack += 5
+                    player.attack = 10
                     x()
                     print(f"The sock increases your attack to {player.attack}.")
                     x()
@@ -500,6 +500,7 @@ def heating_element():
     print("\nYou are now standing in the Heating Element Room.")
     x()
 
+    #if player did not defeat the final boss
     if solved['open_lever'] == False:
         print("???: I heard that you want to get out of this dryer. I am The Discarded Laundry Monster! You must defeat me to escape!")
         x()
@@ -508,6 +509,8 @@ def heating_element():
         final_boss.stats()
         x()
         player.battle_boss(final_boss)
+
+        #if player beats the final boss
         if solved['open_lever'] == True:
             x()
             print("You have beaten the final boss. Behind the fallen monster, you see a glass key. You pick it up.")
@@ -528,6 +531,7 @@ def heating_element():
                         invalid()
                         c11 = input("> ").lower()
 
+        #if player did not beat the final boss
         else:
             x()
             game = input("You were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
@@ -546,6 +550,7 @@ def heating_element():
                         invalid()
                         game = input("\nYou were not able to complete the game. Do you want to go back to your last 'checkpoint' or 'stop' playing? > ").lower()
 
+    #if the player has beaten the final boss
     else:
         print("You have beaten the final boss. You should try and get out of the dryer.")
         x()
@@ -586,6 +591,11 @@ def lint_trap():
             x()
             print("You look up and catch the creature trying to sneak up on you. You both freeze.")
             x()
+
+            #if player does not have a hairpin, they will use the sock (atk = 10)
+            if solved['hairpin'] == False:
+                player.attack = 10
+
             player.stats()
             x()
             lint.stats()
@@ -811,6 +821,16 @@ def motor_room():
                 while a1 not in ("yes", "no"):
                     print("Do you want to be friends with Steve? Enter 'yes' or 'no'.")
                     a1 = input("> ").lower()
+
+        #if player does not have a hairpin, they will use the sock (atk = 10)
+        if solved['hairpin'] == False:
+            print("You have a weapon in your inventory!")
+            x()
+            player.invt()
+            x()
+            print("You can use your sock that you were trying to grab as a weapon.")
+            player.attack = 10
+            x()
 
         player.stats()
         x()

@@ -18,7 +18,7 @@
   * Part of the Game: https://drive.google.com/file/d/1DGNpb69RZxDD7Nv70W7sP24_sT1qYvBX/view?usp=sharing
   * Rooms in the Game:
     * Floor 1:
-      * Lint Trap Room
+      * Lint Trap Room: https://drive.google.com/file/d/1bF9E5tBpOkBlQQHzDnvGfFTURYFnQ2NE/view?usp=sharing
       * Heating Element Room: https://drive.google.com/file/d/1mK2TI_wukRUvb732vu7bm9QDAUqwc7oI/view?usp=sharing
       * Blower Room: https://drive.google.com/file/d/13vjg49lOX5pDd7tAeTGnd1zz1Wx5y49F/view?usp=sharing
       * Motor Room
