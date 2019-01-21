@@ -8,13 +8,15 @@ import random
 # FUNCTIONS THAT ARE USED OFTEN IN THE GAME #
 #############################################
 
-#This is for the player to press enter to continue with the descriptions in the game. This will break up the description so it would be easier to read.
 def x():
+    """This is for the player to press enter to continue with the descriptions in the game. This will break up the description so it would be easier to read."""
+
     x = input("")
     return x
 
-#This is for when the player types in an invalid command.
 def invalid():
+    """This is for when the player types in an invalid command."""
+
     print("\nSorry but the command you entered is invalid. Please type in a command that is shown in quotes.")
     return
 
@@ -22,8 +24,9 @@ def invalid():
 # INFO BEFORE PLAYING THE GAME #
 ################################
 
-#Before beginning the game, the player can choose to either begin or learn how to play.
 def start():
+    """Before beginning the game, the player can choose to either begin or learn how to play. This will get the player's choice."""
+
     start = input("To begin playing, type 'play' and press enter. Type 'help' to learn how to play. > ").lower()
     while True:
         if start == "play":
@@ -37,8 +40,9 @@ def start():
                 start = input("\nThat is not a valid option. Please type 'play' or 'help'. > ")
     return
 
-#This tells the player how to play the game.
 def help_info():
+    """This tells the player how to play the game."""
+
     print("\n- - - - - - - - - - - - - - - - - - - - - - - - -\n")
     print("You will be exploring places and interacting with items in the game. After every line of text that does not require a command, press enter to continue.")
     x()
@@ -65,8 +69,9 @@ You can either type in 'go through the door' or 'walk up the stairs'. The comman
 class Character:
     """Generic character class"""
 
-    #displays health, attack, and defense of character
     def stats(self):
+        """displays health, attack, and defense of character"""
+
         print(f"""{self.name}'s stats:
 - health: {self.health}
 - attack: {self.attack}
@@ -97,8 +102,9 @@ class Player(Character):
             }
         }
 
-    #shows the player's inventory
     def invt(self):
+        """shows the player's inventory"""
+
         for k, v in self.inventory.items():
             print(f"{k}:")
             for k_, v_ in self.inventory[k].items():
@@ -108,6 +114,7 @@ class Player(Character):
 
     def battle(self, opponent):
         """Player fights opponent"""
+
         print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
         print("Let the battle begin!")
         x()
@@ -157,6 +164,7 @@ class Player(Character):
 
     def battle_boss(self, opponent):
         """Player fights final boss"""
+
         opponent_action = "attack defend".split()
         print("- - - - - - - - - - - - - - - - - - - - - - - - -\n")
         print(f"For this battle, you can choose to either attack or defend. If you choose to defend, your defense will increase by 1. {opponent.name} can also choose to either attack or defend. If {opponent.name} chooses to defend, its defense increases by 1. Choose wisely.")
@@ -250,6 +258,7 @@ class Player(Character):
             print("You won the battle! Congratulations!")
             solved['open_lever'] = True
             print("- - - - - - - - - - - - - - - - - - - - - - - - -")
+
         else:
             print(" ~ YOU DIED! ~")
             x()
@@ -295,8 +304,9 @@ final_boss = Opponent("The Discarded Laundry Monster", 100, 50, 0)
 #These are the things that need to be unlocked/solved by the player during the game.
 solved = {'heating_duct': False, 'open_lever': False, 'open_metal_door': False, 'lint_room': False, 'motor_room': False, 'mask': False, 'hairpin': False, 'motor': False, 'candy': False}
 
-#This is the game the player will play in the Motor Room - guess the number Steve the Ghost is thinking of.
 def guessing_game():
+    """This is the game the player will play in the Motor Room - guess the number Steve the Ghost is thinking of."""
+
     secret = random.randint(0,20)
     num_guesses = 0
     guesses_left = 10
@@ -324,8 +334,9 @@ def guessing_game():
 # END OF GAME #
 ###############
 
-#player chooses to escape the dryer
 def yes_ending():
+    """player chooses to escape the dryer"""
+
     print("\nYou pull down the lever and the dryer door opens. You walk towards the door, ready to finally go home.")
     x()
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
@@ -335,8 +346,9 @@ def yes_ending():
     sys.exit()
     return
 
-#player chooses to stay with Steve the Ghost
 def no_ending():
+    """player chooses to stay with Steve the Ghost"""
+
     print("\nYou decide not to leave Steve the Ghost all alone in the dryer. You turn around and go back to the Motor Room where Steve is still floating around.")
     x()
     print("Steve: *gasp* You came back!")
@@ -362,8 +374,8 @@ def no_ending():
 # ROOMS #
 #########
 
-#Heating Duct Room - The player will fight a rat to obtain a new weapon that will help defeat future opponents.
 def heating_duct():
+    """Heating Duct Room - The player will fight a rat to obtain a new weapon that will help defeat future opponents."""
 
     print("\nYou get on your knees and crawl through the small gap.")
     x()
@@ -449,8 +461,8 @@ def heating_duct():
 
     return
 
-#Air Flow Room - The player needs to get the face mask in this room to be able to fight The Lint Monster in the Lint Trap Room.
 def air_flow():
+    """Air Flow Room - The player needs to get the face mask in this room to be able to fight The Lint Monster in the Lint Trap Room."""
 
     if solved['mask'] == False:
         #This is the description of the room.
@@ -493,8 +505,8 @@ def air_flow():
 
     return
 
-#Heating Element Room - The player will fight the final boss before they can finally escape the dryer.
 def heating_element():
+    """Heating Element Room - The player will fight the final boss before they can finally escape the dryer."""
 
     #This is the description of the room.
     print("\nYou are now standing in the Heating Element Room.")
@@ -569,8 +581,8 @@ def heating_element():
 
     return
 
-#Lint Trap Room - The player will fight The Lint Monster in this room.
 def lint_trap():
+    """Lint Trap Room - The player will fight The Lint Monster in this room."""
 
     #This is the description of the room.
     print("\nYou are now standing in the Lint Trap Room. The room is very dusty, and you immediately start coughing.")
@@ -762,8 +774,8 @@ def lint_trap():
 
     return
 
-#Motor Room -
 def motor_room():
+    """Motor Room - The player will fight Steve the Ghost to unlock the box in the Lint Trap Room."""
 
     #This tells the player where they are.
     print("\nYou are now standing in the Motor Room.")
@@ -886,10 +898,12 @@ def motor_room():
 
         guessing_game()
         while True:
+            #if the player guesses the correct number, the box in the Lint Trap Room will be unlocked
             if solved['motor_room'] == True:
                 print("\nSteve: You got it! And like I promised, I'll help you out of the dryer. I just unlocked something for you. (/¯◡ ‿ ◡)/¯")
                 x()
                 break
+
             else:
                 print("\nSteve: Sorry! You have failed to guess the number in 10 tries. I guess you're stuck here with me. (＾∇＾)")
                 x()
@@ -928,11 +942,16 @@ def motor_room():
         print("Steve: You're back! Do you want to play the game again?")
         c8 = input("> ").lower()
         while True:
+
+            #if the player wants to play the game
             if c8 == "yes":
                 guessing_game()
+
+                #if the player guesses the correct number, the box in the Lint Trap Room will be unlocked
                 if solved['motor_room'] == True:
                     print("\nSteve: You got it! And like I promised, I'll help you out of the dryer. I just unlocked something for you. (/¯◡ ‿ ◡)/¯")
                     x()
+
                 else:
                     print("\nSteve: Sorry! You have failed to guess the number in 10 tries. I guess you're stuck here with me. (＾∇＾)")
                     x()
@@ -947,6 +966,7 @@ def motor_room():
                             while play_again_1 not in ('yes', 'no'):
                                 print("\nDo you want to play again? Enter 'yes' or 'no'.")
                                 play_again_1 = input("> ").lower()
+
                 print("Steve: Well, I guess it's time for you to leave me. Good luck!")
                 x()
 
@@ -962,6 +982,8 @@ def motor_room():
                             invalid()
                             c9 = input("> ").lower()
                 break
+
+            #if the player does not want to play again
             elif c8 == "no":
                 print("Steve: Well, I guess it's time for you to leave me. Good luck!\n")
                 #continuation of description
@@ -976,6 +998,7 @@ def motor_room():
                             invalid()
                             c10 = input("> ").lower()
                 break
+
             else:
                 while c8 not in ("yes", "no"):
                     print("\nDo you want to play? Enter 'yes' or 'no'.")
@@ -997,8 +1020,8 @@ def motor_room():
 
     return
 
-#Blower Room - Player needs to get the metal key from this room to get into the Air Flow Room.
 def blower_room():
+    """Blower Room - Player needs to get the metal key from this room to get into the Air Flow Room."""
 
     print("\n~ checkpoint ~")
     x()
@@ -1056,8 +1079,8 @@ def blower_room():
 
     return
 
-#Dryer Drum Room - This is the room where the player starts in and where the player will (hopefully) escape the dryer.
 def drum_room():
+    """Dryer Drum Room - This is the room where the player starts in and where the player will (hopefully) escape the dryer."""
 
     #This is the description of the room.
     print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a gap in the wall. To the 'left', there is metal door. To the 'right', stairs descend into darkness.\n")
@@ -1152,8 +1175,8 @@ def drum_room():
 # START OF GAME #
 #################
 
-#This is the beginning of the game.
 def begin_game():
+    """This is the beginning of the game."""
 
     #background information
     print("\n- - - - - - - - - - - - - - - - - - - - - - - - -\n")
