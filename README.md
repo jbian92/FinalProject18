@@ -1,4 +1,4 @@
-# Intro to Programming Final Project - Fall 2018
+# Intro to Programming Final Project
 
 ## Description
 
@@ -19,10 +19,10 @@
   * Rooms in the Game:
     * Floor 1:
       * Lint Trap Room
-      * Heating Element Room
-      * Blower Room
+      * Heating Element Room: https://drive.google.com/file/d/1mK2TI_wukRUvb732vu7bm9QDAUqwc7oI/view?usp=sharing
+      * Blower Room: https://drive.google.com/file/d/13vjg49lOX5pDd7tAeTGnd1zz1Wx5y49F/view?usp=sharing
       * Motor Room
     * Floor 2:
       * Dryer Drum Room: https://drive.google.com/file/d/1gfAn_-GrK1tKxWXcH6ZJMGzRHyuGfOi6/view?usp=sharing
-      * Air Flow Room
-      * Heating Duct Room
+      * Air Flow Room: https://drive.google.com/file/d/1UCDrQAWHaX3Upqa1YApnGeAecUdnIDKM/view?usp=sharing
+      * Heating Duct Room: https://drive.google.com/file/d/14OkGyu8jjMO5orUEjs0ye9tI3MKWZCeb/view?usp=sharing
