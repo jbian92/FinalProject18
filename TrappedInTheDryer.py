@@ -662,6 +662,7 @@ def lint_trap():
                             c4 = input("> ").lower()
                         elif c4 == "right":
                             print("\nYou get on your knees before pulling the flap up and crawling inside.")
+                            x()
                             blower_room()
                             break
                         elif c4 == "behind":
