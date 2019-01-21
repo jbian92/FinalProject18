@@ -5,6 +5,7 @@ Life is the same, but it's a bit more boring today because, yes you guessed it, 
 This is a text-based game where you find yourself stuck in a dryer. Yes, it's a bizarre situation, but if you search it on Google, it has happened to several people before. This game was made to be straightforward and beginner-friendly so even the most simple-minded person can enjoy this. However, that doesn't mean they'll be able to get out of the dryer. From rats to monsters to even a friendly ghost, there's much to see in a dryer at your neighborhood laundromat. Trapped in the Dryer has a flexible storyline so there are several ways in which you can escape, if you actually manage to do so. You may even be able to get out without visiting all of the rooms, but you might miss out on meeting Steve the Ghost. With only your life on the line, you'll go on a interesting adventure inside the dryer.
 
 ## Citations
+https://docs.google.com/document/d/1ZcbAfdx_AA5q9_8ZDDDIqTN_QRxiG6JwQJXPAKGqugY/edit?usp=sharing
 
 ## Other Information
 
