@@ -1083,7 +1083,7 @@ def drum_room():
     """Dryer Drum Room - This is the room where the player starts in and where the player will (hopefully) escape the dryer."""
 
     #This is the description of the room.
-    print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a gap in the wall. To the 'left', there is metal door. To the 'right', stairs descend into darkness.\n")
+    print("You are now in the Dryer Drum Room. The room is dark and cold. It seems to be in the shape of a cylinder. Right behind you is the 'dryer door'. Next to the dryer door, there is a ‘lever’ inside a glass box. In 'front' of you, there is a gap in the wall. To the 'left', there is a metal door. To the 'right', stairs descend into darkness.\n")
 
     c1 = input("> ").lower()
     while True:
