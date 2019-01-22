@@ -8,6 +8,7 @@ This is a text-based game where you start off stuck in a dryer. Yes, it's a biza
 https://docs.google.com/document/d/1ZcbAfdx_AA5q9_8ZDDDIqTN_QRxiG6JwQJXPAKGqugY/edit?usp=sharing
 
 ## Presentation
+https://docs.google.com/presentation/d/1y0oIOmKPuKMK7Dba9QQnbjGLo5Hv-vqhagCoMaohdco/edit?usp=sharing
 
 ## Links to Other Files
 * Map of the Game: https://drive.google.com/file/d/1MRg9b2wzHmDLbW4ScbVsmngkDnAmv3IH/view?usp=sharing
